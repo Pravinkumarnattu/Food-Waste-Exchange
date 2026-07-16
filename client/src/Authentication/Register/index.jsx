@@ -11,18 +11,29 @@ const Register = () => {
     confirmPassword: "",
     phone: "",
     role: role,
-    donor: {},
-    ngo: {},
-    volunteer: {},
+  });
+
+  const [donorDetails, setDonorDetails] = useState({
+    businessName: "",
+    businessType: "",
+    donorAddress: "",
+  });
+
+  const [ngoDetails, setNgoDetails] = useState({
+    organizationName: "",
+    ngoRegistrationNumber: "",
+    organizationAddress: "",
+    areaOfOperation: "",
+  });
+
+  const [volunteerDetails, setvolunteerDetails] = useState({
+    fullName: "",
+    volunteerAddress: "",
+    modeOfTransport: "",
+    availability: "",
   });
 
   const donor = () => {
-    const [donorDetails, setDonorDetails] = useState({
-      businessName: "",
-      businessType: "",
-      donorAddress: "",
-    });
-    console.log(donorDetails.address);
     return (
       <>
         <label htmlFor="business name">Business/Restaurant Name</label>
@@ -73,12 +84,6 @@ const Register = () => {
   };
 
   const ngo = () => {
-    const [ngoDetails, setNgoDetails] = useState({
-      organizationName: "",
-      ngoRegistrationNumber: "",
-      organizationAddress: "",
-      areaOfOperation: "",
-    });
     return (
       <>
         <label htmlFor="organization_name">Organization Name</label>
@@ -141,13 +146,6 @@ const Register = () => {
   };
 
   const volunteer = () => {
-    const [volunteerDetails, setvolunteerDetails] = useState({
-      fullName: "",
-      volunteerAddress: "",
-      modeOfTransport: "",
-      availability: "",
-    });
-
     return (
       <>
         <label htmlFor="full_name">Full Name</label>
@@ -188,7 +186,9 @@ const Register = () => {
             })
           }
         >
-          <option value="" disabled>Select option</option>
+          <option value="" disabled>
+            Select option
+          </option>
           <option value="bike">Bike</option>
           <option value="car">Car</option>
           <option value="On-foot">On foot</option>
@@ -197,22 +197,36 @@ const Register = () => {
         <label htmlFor="availability">Availability</label>
         <select
           id="availability"
-          value={volunteerDetails.Availability}
+          value={volunteerDetails.availability}
           onChange={(e) =>
             setvolunteerDetails({
               ...volunteerDetails,
-              Availability: e.target.value,
+              availability: e.target.value,
             })
           }
         >
-          <option value="" disabled>Select option</option>
+          <option value="" disabled>
+            Select option
+          </option>
           <option value="weekdays">Weekdays</option>
           <option value="weekends">Weekends </option>
           <option value="anytime">Anytime</option>
         </select>
-        
       </>
     );
+  };
+
+  const renderMatches = () => {
+    switch (role) {
+      case "donor":
+        return donor();
+      case "ngo":
+        return ngo();
+      case "volunteer":
+        return volunteer();
+      default:
+        return null;
+    }
   };
 
   return (
@@ -269,7 +283,7 @@ const Register = () => {
         value={role.toUpperCase()}
         disabled
       />
-      {donor()}
+      {renderMatches()}
     </form>
   );
 };
