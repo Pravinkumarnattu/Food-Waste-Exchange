@@ -26,7 +26,7 @@ const Register = () => {
     areaOfOperation: "",
   });
 
-  const [volunteerDetails, setvolunteerDetails] = useState({
+  const [volunteerDetails, setVolunteerDetails] = useState({
     fullName: "",
     volunteerAddress: "",
     modeOfTransport: "",
@@ -52,7 +52,7 @@ const Register = () => {
           id="business_type"
           value={donorDetails.businessType}
           onChange={(e) =>
-            setBusinessType({
+            setDonorDetails({
               ...donorDetails,
               businessType: e.target.value,
             })
@@ -74,9 +74,9 @@ const Register = () => {
           rows={5}
           cols={30}
           placeholder="Please enter address..."
-          value={donorDetails.address}
+          value={donorDetails.donorAddress}
           onChange={(e) =>
-            setDonorDetails({ ...donorDetails, address: e.target.value })
+            setDonorDetails({ ...donorDetails, donorAddress: e.target.value })
           }
         />
       </>
@@ -91,15 +91,15 @@ const Register = () => {
           type="text"
           id="organization_name"
           placeholder="Enter organization name"
-          value={ngoDetails.ngoRegistrationNumber}
+          value={ngoDetails.organizationName}
           onChange={(e) =>
             setNgoDetails({
               ...ngoDetails,
-              ngoRegistrationNumber: e.target.value,
+              organizationName: e.target.value,
             })
           }
         />
-        <label id="ngo_registration_number">NGO Registration Number</label>
+        <label htmlFor="ngo_registration_number">NGO Registration Number</label>
         <input
           type="text"
           id="ngo_registration_number"
@@ -120,14 +120,14 @@ const Register = () => {
           placeholder="Please enter address..."
           value={ngoDetails.organizationAddress}
           onChange={(e) =>
-            setDonorDetails({
+            setNgoDetails({
               ...ngoDetails,
               organizationAddress: e.target.value,
             })
           }
         />
 
-        <label>Area of Operation</label>
+        <label htmlFor="area_of_operation">Area of Operation</label>
         <select
           id="area_of_operation"
           value={ngoDetails.areaOfOperation}
@@ -154,8 +154,8 @@ const Register = () => {
           id="full_name"
           placeholder="Enter full name"
           value={volunteerDetails.fullName}
-          onChange={() =>
-            setvolunteerDetails({
+          onChange={(e) =>
+            setVolunteerDetails({
               ...volunteerDetails,
               fullName: e.target.value,
             })
@@ -168,7 +168,7 @@ const Register = () => {
           placeholder="Enter address/locality"
           value={volunteerDetails.volunteerAddress}
           onChange={(e) =>
-            setvolunteerDetails({
+            setVolunteerDetails({
               ...volunteerDetails,
               volunteerAddress: e.target.value,
             })
@@ -180,7 +180,7 @@ const Register = () => {
           id="mode_of_transport"
           value={volunteerDetails.modeOfTransport}
           onChange={(e) =>
-            setvolunteerDetails({
+            setVolunteerDetails({
               ...volunteerDetails,
               modeOfTransport: e.target.value,
             })
@@ -199,7 +199,7 @@ const Register = () => {
           id="availability"
           value={volunteerDetails.availability}
           onChange={(e) =>
-            setvolunteerDetails({
+            setVolunteerDetails({
               ...volunteerDetails,
               availability: e.target.value,
             })
@@ -280,7 +280,7 @@ const Register = () => {
         type="text"
         id="role"
         readOnly
-        value={role.toUpperCase()}
+        value={role ? role.toUpperCase() : ""}
         disabled
       />
       {renderMatches()}
