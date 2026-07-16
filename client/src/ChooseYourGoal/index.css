@@ -1,0 +1,89 @@
+.choose-your-goal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  height: 100%;
+  gap: 40px;
+  text-align: center;
+}
+.goal-head {
+    font-size: 2rem;
+}
+.goal-para {
+  color: #4b5563;
+  margin: 10px 0;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.card {
+  width: 15%;
+  min-height: 25rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #9f9f9f;
+  padding: 10px;
+}
+.card p {
+  color: #4b5563;
+}
+
+.goal-buttons {
+  background: #15803d;
+  color: white;
+  border: none;
+  width: 7rem;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+
+.goal-footer{
+    width: 60%;
+    height: 60px;
+    border-radius: 5px;
+    background: #e7e9ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.goal-footer h2 {
+    color: #116a31;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .choose-your-goal-container {
+    margin: 10px 0;
+  }
+  .cards {
+    flex-direction: column;
+  }
+  .card {
+    width: 80%;
+    min-height: 20rem;
+  }
+  .goal-footer{
+    width: 90%;
+    gap: 2px;
+    padding: 0 5px;
+  }
+  .goal-footer h2 {
+    font-size: 0.8rem;
+}
+}
