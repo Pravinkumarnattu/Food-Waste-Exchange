@@ -163,6 +163,54 @@ const Register = () => {
             })
           }
         />
+        <label htmlFor="address_or_locality">Address/Locality</label>
+        <input
+          type="text"
+          id="address_or_locality"
+          placeholder="Enter address/locality"
+          value={volunteerDetails.volunteerAddress}
+          onChange={(e) =>
+            setvolunteerDetails({
+              ...volunteerDetails,
+              volunteerAddress: e.target.value,
+            })
+          }
+        />
+
+        <label htmlFor="mode_of_transport">Mode of Transport</label>
+        <select
+          id="mode_of_transport"
+          value={volunteerDetails.modeOfTransport}
+          onChange={(e) =>
+            setvolunteerDetails({
+              ...volunteerDetails,
+              modeOfTransport: e.target.value,
+            })
+          }
+        >
+          <option value="" disabled>Select option</option>
+          <option value="bike">Bike</option>
+          <option value="car">Car</option>
+          <option value="On-foot">On foot</option>
+        </select>
+
+        <label htmlFor="availability">Availability</label>
+        <select
+          id="availability"
+          value={volunteerDetails.Availability}
+          onChange={(e) =>
+            setvolunteerDetails({
+              ...volunteerDetails,
+              Availability: e.target.value,
+            })
+          }
+        >
+          <option value="" disabled>Select option</option>
+          <option value="weekdays">Weekdays</option>
+          <option value="weekends">Weekends </option>
+          <option value="anytime">Anytime</option>
+        </select>
+        
       </>
     );
   };
