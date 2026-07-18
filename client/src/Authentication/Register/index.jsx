@@ -1,11 +1,19 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import "./index.css";
 
 const Register = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const role = searchParams.get("role");
-  const [userDeatails, setUserDetails] = useState({
+  const navigate = useNavigate();
+  const roles = ["donor", "ngo", "volunteer"];
+  useEffect(() => {
+    if (!role || !roles.includes(role)) {
+      navigate("/choose-goal");
+    }
+  }, [role, navigate]);
+
+  const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
     confirmPassword: "",
@@ -36,7 +44,7 @@ const Register = () => {
   const donor = () => {
     return (
       <>
-        <label htmlFor="business name">Business/Restaurant Name</label>
+        <label htmlFor="business_name">Business/Restaurant Name</label>
         <input
           type="text"
           id="business_name"
@@ -237,9 +245,9 @@ const Register = () => {
         id="email"
         name="email"
         placeholder="Enter email"
-        value={userDeatails.email}
+        value={userDetails.email}
         onChange={(e) =>
-          setUserDetails({ ...userDeatails, email: e.target.value })
+          setUserDetails({ ...userDetails, email: e.target.value })
         }
       />
       <label htmlFor="password">Password</label>
@@ -248,9 +256,9 @@ const Register = () => {
         id="password"
         name="password"
         placeholder="Enter password"
-        value={userDeatails.password}
+        value={userDetails.password}
         onChange={(e) =>
-          setUserDetails({ ...userDeatails, password: e.target.value })
+          setUserDetails({ ...userDetails, password: e.target.value })
         }
       />
       <label htmlFor="confirm_password">Confirm Password</label>
@@ -259,9 +267,9 @@ const Register = () => {
         id="confirm_password"
         name="confirm_password"
         placeholder="Confirm password"
-        value={userDeatails.confirmPassword}
+        value={userDetails.confirmPassword}
         onChange={(e) =>
-          setUserDetails({ ...userDeatails, confirmPassword: e.target.value })
+          setUserDetails({ ...userDetails, confirmPassword: e.target.value })
         }
       />
       <label htmlFor="phone">Phone Number</label>
@@ -270,9 +278,9 @@ const Register = () => {
         id="phone"
         name="phone"
         placeholder="Enter phone"
-        value={userDeatails.phone}
+        value={userDetails.phone}
         onChange={(e) =>
-          setUserDetails({ ...userDeatails, phone: e.target.value })
+          setUserDetails({ ...userDetails, phone: e.target.value })
         }
       />
       <label htmlFor="role">Role</label>
@@ -280,7 +288,7 @@ const Register = () => {
         type="text"
         id="role"
         readOnly
-        value={role ? role.toUpperCase() : ""}
+        value={role != null ? role.toUpperCase() : ""}
         disabled
       />
       {renderMatches()}
