@@ -1,25 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userAddress = new mongoose.Schema({
-  state: {
-    type: String,
-    required: true,
-  },
-  district: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
-  streeet: {
-    type: String,
-    required: true,
-  },
-});
-
 
 const users = new mongoose.Schema({
   name: {

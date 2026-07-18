@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import api from "../../api/axiosInstance";
 import "./index.css";
 
 const Register = () => {
+  const [errMsg, setErrMsg] = useState("");
   const [searchParams] = useSearchParams();
   const role = searchParams.get("role");
   const navigate = useNavigate();
@@ -54,6 +56,9 @@ const Register = () => {
           onChange={(e) =>
             setDonorDetails({ ...donorDetails, businessName: e.target.value })
           }
+          required
+          minLength={2}
+          title="Please enter your business name"
         />
         <label htmlFor="business_type">Business Type</label>
         <select
@@ -65,6 +70,7 @@ const Register = () => {
               businessType: e.target.value,
             })
           }
+          required
         >
           <option value="" disabled>
             Select your business type
@@ -86,6 +92,9 @@ const Register = () => {
           onChange={(e) =>
             setDonorDetails({ ...donorDetails, donorAddress: e.target.value })
           }
+          required
+          minLength={10}
+          title="Please enter a complete pickup address"
         />
       </>
     );
@@ -106,6 +115,9 @@ const Register = () => {
               organizationName: e.target.value,
             })
           }
+          required
+          minLength={2}
+          title="Please enter your organization name"
         />
         <label htmlFor="ngo_registration_number">NGO Registration Number</label>
         <input
@@ -119,6 +131,8 @@ const Register = () => {
               ngoRegistrationNumber: e.target.value,
             })
           }
+          required
+          title="Please enter your NGO registration number"
         />
         <label htmlFor="address">Organization Address</label>
         <textarea
@@ -133,6 +147,9 @@ const Register = () => {
               organizationAddress: e.target.value,
             })
           }
+          required
+          minLength={10}
+          title="Please enter a complete organization address"
         />
 
         <label htmlFor="area_of_operation">Area of Operation</label>
@@ -142,6 +159,7 @@ const Register = () => {
           onChange={(e) =>
             setNgoDetails({ ...ngoDetails, areaOfOperation: e.target.value })
           }
+          required
         >
           <option value="" disabled>
             Select your area
@@ -168,6 +186,9 @@ const Register = () => {
               fullName: e.target.value,
             })
           }
+          required
+          minLength={2}
+          title="Please enter your full name"
         />
         <label htmlFor="address_or_locality">Address/Locality</label>
         <input
@@ -181,6 +202,9 @@ const Register = () => {
               volunteerAddress: e.target.value,
             })
           }
+          required
+          minLength={5}
+          title="Please enter your address or locality"
         />
 
         <label htmlFor="mode_of_transport">Mode of Transport</label>
@@ -193,6 +217,7 @@ const Register = () => {
               modeOfTransport: e.target.value,
             })
           }
+          required
         >
           <option value="" disabled>
             Select option
@@ -212,6 +237,7 @@ const Register = () => {
               availability: e.target.value,
             })
           }
+          required
         >
           <option value="" disabled>
             Select option
@@ -222,6 +248,39 @@ const Register = () => {
         </select>
       </>
     );
+  };
+
+  const getCurrRole = () => {
+    switch (role) {
+      case "donor":
+        return donorDetails;
+      case "ngo":
+        return ngoDetails;
+      case "volunteer":
+        return volunteerDetails;
+      default:
+        return {};
+    }
+  };
+
+  const submitForm = async (event) => {
+    event.preventDefault();
+    const { email, password, confirmPassword, phone, role } = userDetails;
+    if (password != confirmPassword) {
+      setErrMsg("Invalid Confirm password");
+      return;
+    } else setErrMsg("");
+    const payload = {
+      ...userDetails,
+      ...getCurrRole(),
+    };
+    console.log(payload);
+    try {
+      const response = await api.post("/auth/register", payload);
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const renderMatches = () => {
@@ -238,17 +297,19 @@ const Register = () => {
   };
 
   return (
-    <form>
+    <form onSubmit={submitForm}>
       <label htmlFor="email">Email</label>
       <input
         type="email"
         id="email"
         name="email"
         placeholder="Enter email"
+        title="Please Enter valid email address"
         value={userDetails.email}
         onChange={(e) =>
           setUserDetails({ ...userDetails, email: e.target.value })
         }
+        required
       />
       <label htmlFor="password">Password</label>
       <input
@@ -260,6 +321,9 @@ const Register = () => {
         onChange={(e) =>
           setUserDetails({ ...userDetails, password: e.target.value })
         }
+        required
+        minLength={8}
+        title="Password must be at least 8 characters"
       />
       <label htmlFor="confirm_password">Confirm Password</label>
       <input
@@ -271,6 +335,9 @@ const Register = () => {
         onChange={(e) =>
           setUserDetails({ ...userDetails, confirmPassword: e.target.value })
         }
+        required
+        minLength={8}
+        title="Please re-enter your password"
       />
       <label htmlFor="phone">Phone Number</label>
       <input
@@ -282,6 +349,10 @@ const Register = () => {
         onChange={(e) =>
           setUserDetails({ ...userDetails, phone: e.target.value })
         }
+        required
+        pattern="[0-9]{10}"
+        maxLength={10}
+        title="Please enter a valid 10-digit phone number"
       />
       <label htmlFor="role">Role</label>
       <input
@@ -292,6 +363,8 @@ const Register = () => {
         disabled
       />
       {renderMatches()}
+      <button type="submit">Register</button>
+      {errMsg && <p>{errMsg}</p>}
     </form>
   );
 };
