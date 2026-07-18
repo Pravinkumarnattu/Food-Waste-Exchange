@@ -5,6 +5,7 @@ import "./index.css";
 
 const Register = () => {
   const [errMsg, setErrMsg] = useState("");
+  const [loading, setLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const role = searchParams.get("role");
   const navigate = useNavigate();
@@ -274,12 +275,15 @@ const Register = () => {
       ...userDetails,
       ...getCurrRole(),
     };
-    console.log(payload);
     try {
+      setLoading(true);
       const response = await api.post("/auth/register", payload);
       console.log(response);
+      navigate("/login");
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -363,7 +367,9 @@ const Register = () => {
         disabled
       />
       {renderMatches()}
-      <button type="submit">Register</button>
+      <button type="submit" disabled={loading}>
+        {loading ? "Registering..." : "Register"}
+      </button>
       {errMsg && <p>{errMsg}</p>}
     </form>
   );
