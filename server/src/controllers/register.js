@@ -61,7 +61,6 @@ const register = async (req, res) => {
     if (err.name === "ValidationError") {
       return res.status(400).json({ message: err.message });
     }
-    console.log(err);
     res.status(500).json({ message: "Something went wrong, please try again" });
   }
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import api from "../../api/axiosInstance";
 import "./index.css";
 
@@ -271,17 +271,17 @@ const Register = () => {
       setErrMsg("Invalid Confirm password");
       return;
     } else setErrMsg("");
-    const payload = {
-      ...userDetails,
-      ...getCurrRole(),
-    };
     try {
       setLoading(true);
+      const payload = {
+        ...userDetails,
+        ...getCurrRole(),
+      };
       const response = await api.post("/auth/register", payload);
-      console.log(response);
-      navigate("/login");
-    } catch (e) {
-      console.log(e);
+      navigate("/login", { replace: true });
+    } catch (err) {
+      console.error(err);
+      setErrMsg(err.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -302,6 +302,7 @@ const Register = () => {
 
   return (
     <form onSubmit={submitForm}>
+      {errMsg && <p>{errMsg}</p>}
       <label htmlFor="email">Email</label>
       <input
         type="email"
@@ -370,7 +371,9 @@ const Register = () => {
       <button type="submit" disabled={loading}>
         {loading ? "Registering..." : "Register"}
       </button>
-      {errMsg && <p>{errMsg}</p>}
+      <p>
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
     </form>
   );
 };
