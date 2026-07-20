@@ -2,6 +2,7 @@ import Cookie from "js-cookie";
 import { Navigate } from "react-router-dom";
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const jwtToken = Cookie.get("jwt_token");
+  const role = Cookie.get("role");
 
   if (!jwtToken) {
     return <Navigate to="/login" replace />;
