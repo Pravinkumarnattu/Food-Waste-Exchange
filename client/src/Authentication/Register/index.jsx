@@ -281,7 +281,7 @@ const Register = () => {
       navigate("/login", { replace: true });
     } catch (err) {
       console.error(err);
-      setErrMsg(err.response.data.message);
+      setErrMsg(err.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -301,80 +301,89 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={submitForm}>
-      {errMsg && <p>{errMsg}</p>}
-      <label htmlFor="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Enter email"
-        title="Please Enter valid email address"
-        value={userDetails.email}
-        onChange={(e) =>
-          setUserDetails({ ...userDetails, email: e.target.value })
-        }
-        required
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Enter password"
-        value={userDetails.password}
-        onChange={(e) =>
-          setUserDetails({ ...userDetails, password: e.target.value })
-        }
-        required
-        minLength={8}
-        title="Password must be at least 8 characters"
-      />
-      <label htmlFor="confirm_password">Confirm Password</label>
-      <input
-        type="password"
-        id="confirm_password"
-        name="confirm_password"
-        placeholder="Confirm password"
-        value={userDetails.confirmPassword}
-        onChange={(e) =>
-          setUserDetails({ ...userDetails, confirmPassword: e.target.value })
-        }
-        required
-        minLength={8}
-        title="Please re-enter your password"
-      />
-      <label htmlFor="phone">Phone Number</label>
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        placeholder="Enter phone"
-        value={userDetails.phone}
-        onChange={(e) =>
-          setUserDetails({ ...userDetails, phone: e.target.value })
-        }
-        required
-        pattern="[0-9]{10}"
-        maxLength={10}
-        title="Please enter a valid 10-digit phone number"
-      />
-      <label htmlFor="role">Role</label>
-      <input
-        type="text"
-        id="role"
-        readOnly
-        value={role != null ? role.toUpperCase() : ""}
-        disabled
-      />
-      {renderMatches()}
-      <button type="submit" disabled={loading}>
-        {loading ? "Registering..." : "Register"}
-      </button>
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </form>
+    <div className="register-container">
+      <form onSubmit={submitForm} className="register-form">
+        <h1 className="main-head">Create Account</h1>
+        <p className="main-para">Sign up to get started</p>
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter email"
+          title="Please Enter valid email address"
+          value={userDetails.email}
+          onChange={(e) =>
+            setUserDetails({ ...userDetails, email: e.target.value })
+          }
+          required
+          className="form-email"
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter password"
+          value={userDetails.password}
+          onChange={(e) =>
+            setUserDetails({ ...userDetails, password: e.target.value })
+          }
+          required
+          minLength={8}
+          title="Password must be at least 8 characters"
+          className="form-password"
+        />
+        <label htmlFor="confirm_password">Confirm Password</label>
+        <input
+          type="password"
+          id="confirm_password"
+          name="confirm_password"
+          placeholder="Confirm password"
+          value={userDetails.confirmPassword}
+          onChange={(e) =>
+            setUserDetails({ ...userDetails, confirmPassword: e.target.value })
+          }
+          required
+          minLength={8}
+          title="Please re-enter your password"
+          className="form-confirm-password"
+        />
+        <label htmlFor="phone">Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Enter phone"
+          value={userDetails.phone}
+          onChange={(e) =>
+            setUserDetails({ ...userDetails, phone: e.target.value })
+          }
+          required
+          pattern="[0-9]{10}"
+          maxLength={10}
+          title="Please enter a valid 10-digit phone number"
+          className="form-phone"
+        />
+        <label htmlFor="role">Role</label>
+        <input
+          type="text"
+          id="role"
+          readOnly
+          value={role != null ? role.toUpperCase() : ""}
+          disabled
+          className="form-role"
+        />
+        {renderMatches()}
+        <button type="submit" disabled={loading} className="form-submit-button">
+          {loading ? "Registering..." : "Register"}
+        </button>
+        {errMsg && <p className="form-error">{errMsg}</p>}
+        <p className="form-already">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </form>
+    </div>
   );
 };
 

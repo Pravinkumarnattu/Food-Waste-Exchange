@@ -43,7 +43,9 @@ const Login = () => {
     }
   };
   return (
-    <form onSubmit={submitLoginForm}>
+    <form onSubmit={submitLoginForm} className = "">
+      <h1>Wecome Back!</h1>
+      <p>Login to your account</p>
       <label htmlFor="email">Email</label>
       <input
         type="email"

@@ -1,89 +1,132 @@
 .choose-your-goal-container {
+  min-height: 100vh;
+  padding: 50px 20px;
+  background: #f4fbf5;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  height: 100%;
-  gap: 40px;
-  text-align: center;
+  box-sizing: border-box;
 }
+
 .goal-head {
-    font-size: 2rem;
+  margin: 0;
+  text-align: center;
+  color: #166534;
+  font-size: 2.3rem;
+  font-weight: 700;
 }
+
 .goal-para {
-  color: #4b5563;
-  margin: 10px 0;
+  margin: 10px 0 40px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 1.05rem;
 }
 
 .cards {
+  width: 100%;
+  max-width: 1150px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
+  gap: 30px;
   flex-wrap: wrap;
 }
+
 .card {
-  width: 15%;
-  min-height: 25rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  border-radius: 5px;
-  box-shadow: 0 0 10px #9f9f9f;
-  padding: 10px;
+  width: 320px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 30px 25px;
+  text-align: center;
+  box-sizing: border-box;
 }
+
+.card h2 {
+  margin: 20px 0 12px;
+  color: #166534;
+  font-size: 1.5rem;
+}
+
 .card p {
-  color: #4b5563;
+  margin: 0 0 25px;
+  color: #6b7280;
+  line-height: 1.6;
+  font-size: 15px;
 }
 
 .goal-buttons {
-  background: #15803d;
-  color: white;
+  width: 100%;
+  height: 46px;
   border: none;
-  width: 7rem;
-  height: 40px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  background: #15803d;
+  color: #ffffff;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  outline: none;
+  transition: background 0.2s ease;
 }
 
-.goal-footer{
-    width: 60%;
-    height: 60px;
-    border-radius: 5px;
-    background: #e7e9ec;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.goal-buttons:hover {
+  background: #166534;
 }
+
+.goal-footer {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  color: #166534;
+}
+
 .goal-footer h2 {
-    color: #116a31;
-    font-size: 1.2rem;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
   .choose-your-goal-container {
-    margin: 10px 0;
+    padding: 30px 15px;
   }
+
+  .goal-head {
+    font-size: 1.9rem;
+  }
+
+  .goal-para {
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+  }
+
   .cards {
-    flex-direction: column;
+    gap: 20px;
   }
+
   .card {
-    width: 80%;
-    min-height: 20rem;
+    width: 100%;
+    max-width: 360px;
+    padding: 25px 20px;
   }
-  .goal-footer{
-    width: 90%;
-    gap: 2px;
-    padding: 0 5px;
+
+  .card h2 {
+    font-size: 1.35rem;
   }
+
+  .card p {
+    font-size: 14px;
+  }
+
+  .goal-footer {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 35px;
+  }
+
   .goal-footer h2 {
-    font-size: 0.8rem;
-}
+    font-size: 1rem;
+  }
 }
