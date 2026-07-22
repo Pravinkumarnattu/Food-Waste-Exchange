@@ -23,13 +23,13 @@ const Login = () => {
       Cookies.set("role", role, { expires: 7 });
       switch (role) {
         case "donor":
-          navigate("/donor/dashboard", { replace: true });
+          navigate("/dashboard/donor", { replace: true });
           break;
         case "ngo":
-          navigate("/ngo/dashboard", { replace: true });
+          navigate("/dashboard/ngo", { replace: true });
           break;
         case "volunteer":
-          navigate("/volunteer/dashboard", { replace: true });
+          navigate("/dashboard/volunteer", { replace: true });
           break;
         default:
           setErrMsg("Unknown role, please contact support");
@@ -43,7 +43,7 @@ const Login = () => {
     }
   };
   return (
-    <form onSubmit={submitLoginForm} className = "">
+    <form onSubmit={submitLoginForm} className="">
       <h1>Wecome Back!</h1>
       <p>Login to your account</p>
       <label htmlFor="email">Email</label>

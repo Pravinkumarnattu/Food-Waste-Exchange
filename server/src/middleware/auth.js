@@ -18,4 +18,4 @@ const authentication = (req, res, next) => {
   }
 };
 
-export default authentication;
+module.exports = authentication;
