@@ -3,13 +3,20 @@ const router = express.Router();
 
 const register = require("../controllers/register");
 const login = require("../controllers/login");
-const donor = require("../controllers/donor");
-const ngo = require("../controllers/ngo");
-const auth = require("../middleware/auth");
+const authentication = require("../middleware/auth");
+const requireRole = require("../middleware/requireRole");
+const getProfile = require("../controllers/profileController");
+
+const getAddress = require("../controllers/donorAddress");
 
 router.post("/register", register);
 router.post("/login", login);
-router.get("/donor", auth, donor);
-router.get("/ngo", auth, ngo);
+
+// Dashboard
+// router.get("/donor", authentication, donor);
+// router.get("/ngo", authentication, getProfile);
+// router.get("/volunteer", authentication, getProfile);
+
+router.get("/donorAddress", authentication, getAddress);
 
 module.exports = router;

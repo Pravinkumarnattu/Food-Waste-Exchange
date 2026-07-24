@@ -5,7 +5,6 @@ const Ngo = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await api.get("/dashboard/ngo");
-      console.log(res);
     };
     fetchData();
   });

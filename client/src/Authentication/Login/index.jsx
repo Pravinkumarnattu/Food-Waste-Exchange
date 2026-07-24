@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import api from "../../api/axiosInstance";
+import './index.css'
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({
@@ -43,9 +44,10 @@ const Login = () => {
     }
   };
   return (
-    <form onSubmit={submitLoginForm} className="">
-      <h1>Wecome Back!</h1>
-      <p>Login to your account</p>
+    <div className="login-container">
+    <form onSubmit={submitLoginForm} className="login-form">
+      <h1 className="login-head">Wecome Back!</h1>
+      <p className="login-para">Login to your account</p>
       <label htmlFor="email">Email</label>
       <input
         type="email"
@@ -73,14 +75,15 @@ const Login = () => {
         minLength={8}
         title="Password must be at least 8 characters"
       />
-      <button type="submit" disabled={loading}>
+      <button type="submit" disabled={loading} className="login-button">
         {loading ? "Logging..." : "Login"}
       </button>
-      <p>
+      <p className="no-signup">
         Don't have an account? <Link to="/choose-goal">Sign up</Link>
       </p>
-      {errMsg && <p>{errMsg}</p>}
+      {errMsg && <p className="login-error">{errMsg}</p>}
     </form>
+    </div>
   );
 };
 

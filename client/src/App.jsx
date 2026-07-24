@@ -4,7 +4,7 @@ import ChooseYourGoal from "./ChooseYourGoal";
 import Register from "./Authentication/Register";
 import Login from "./Authentication/Login";
 import ProtectedRoute from "./ProtectedRoute/index";
-import Donor from "./Dashboard/Donor/index";
+import Donor from "./Dashboard/Donor/AddFood";
 import Ngo from "./Dashboard/Ngo/index";
 import "./App.css";
 
@@ -16,6 +16,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/choose-goal" element={<ChooseYourGoal />} />
+
         <Route
           path="/dashboard/donor"
           element={
@@ -40,14 +41,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/admin/dashboard"
-          element={
-            <ProtectedRoute>
-              <div>admin</div>
-            </ProtectedRoute>
-          }
-        />
+        
         <Route path="/unauthorized" element={<div>Unauthorized</div>} />
       </Routes>
     </BrowserRouter>

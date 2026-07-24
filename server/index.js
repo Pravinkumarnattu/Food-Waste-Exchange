@@ -12,8 +12,11 @@ app.use(
 const connectDB = require("./src/config/db");
 const routes = require("./src/routes/route");
 
+app.use("/api", routes);
+
 app.use("/api/auth", routes);
-app.use("/api/dashboard", routes)
+
+app.use("/api/dashboard", routes);
 
 connectDB();
 app.listen(process.env.PORT || 5000, () => {
