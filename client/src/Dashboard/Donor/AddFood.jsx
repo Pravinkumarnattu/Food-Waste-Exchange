@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import api from "../../api/axiosInstance";
 
 const AddFood = () => {
+  const [errMsg, setErrMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
   const [foodDetails, setFoodDetails] = useState({
     foodName: "",
     foodType: "",
@@ -10,20 +13,49 @@ const AddFood = () => {
     pickupAddress: "",
     foodImage: "",
   });
+  const [donorAddress, setDonorAddress] = useState("");
 
   useEffect(() => {
     const getAddress = async () => {
-      const responseAddress = await api.get("/donorAddress");
+      const response = await api.get("/auth/me");
       setFoodDetails((prev) => ({
         ...prev,
-        pickupAddress: responseAddress?.data?.address,
+        pickupAddress: response?.data?.donor?.donorAddress,
       }));
+      setDonorAddress(response?.data?.donor?.donorAddress);
     };
     getAddress();
   }, []);
 
-  const addFoodForm = (event) => {
+  useEffect(() => {
+    if (!successMsg) return;
+    const timer = setTimeout(() => {
+      setSuccessMsg("");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [successMsg]);
+
+  const addFoodForm = async (event) => {
     event.preventDefault();
+    try {
+      setLoading(true);
+      const response = await api.post("/dashboard/donor/add-food", foodDetails);
+      setErrMsg("");
+      setFoodDetails({
+        foodName: "",
+        foodType: "",
+        quantity: "",
+        dateTime: "",
+        pickupAddress: donorAddress,
+        foodImage: "",
+      });
+      setSuccessMsg(response?.data?.message);
+    } catch (err) {
+      console.error(err);
+      setErrMsg(err.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -33,7 +65,7 @@ const AddFood = () => {
         <input
           type="text"
           id="food_name"
-          placeholder="Enter Foode name"
+          placeholder="Enter Food name"
           value={foodDetails.foodName}
           onChange={(e) =>
             setFoodDetails({ ...foodDetails, foodName: e.target.value })
@@ -55,7 +87,8 @@ const AddFood = () => {
           <option value="" disabled>
             Select a type
           </option>
-          <option value="bakery">Bakery</option>
+          <option value="cooked_food">Cooked Food</option>
+          <option value="bakery">Bakery Items</option>
           <option value="fruits_vegetables">Fruits & Vegetables</option>
           <option value="beverages">Beverages</option>
           <option value="others">Others</option>
@@ -101,10 +134,22 @@ const AddFood = () => {
           title="Please enter a complete pickup address"
         />
 
-        <label id="food_image">Food Image</label>
-        <input type="file" id="food_image" />
+        <label htmlFor="food_image">Food Image</label>
+        <input
+          type="file"
+          id="food_image"
+          accept="image/*"
+          onChange={(e) =>
+            setFoodDetails({ ...foodDetails, foodImage: e.target.files[0] })
+          }
+          required
+        />
 
-        <button type="submit">Add Food</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Adding Food..." : "Add Food"}
+        </button>
+        {successMsg && <p className="form-success">{successMsg}</p>}
+        {errMsg && <p className="form-error">{errMsg}</p>}
       </form>
     </div>
   );

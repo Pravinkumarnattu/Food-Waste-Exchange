@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
 const donorSchema = new mongoose.Schema({
   businessName: String,
