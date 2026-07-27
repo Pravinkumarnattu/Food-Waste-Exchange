@@ -1,0 +1,52 @@
+.donor-topbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+.donor-topbar button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+.donor-topbar button:hover {
+  background-color: #f3f4f6;
+}
+
+.topbar-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 1rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  overflow: hidden;
+}
+
+.topbar-dropdown a {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #111827;
+}
+
+.topbar-dropdown a:hover {
+  background-color: #f3f4f6;
+}
+
+@media (max-width: 768px) {
+    .donor-topbar{
+        display: none;
+    }
+}

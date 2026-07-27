@@ -6,12 +6,16 @@ const requireRole = require("../middleware/requireRole");
 
 const register = require("../controllers/register");
 const login = require("../controllers/login");
+
 const addFoodController = require("../controllers/addFoodController");
+const getMyDonations = require("../controllers/getMyDonations");
+
 const getProfile = require("../controllers/profileController");
 
 router.post("/register", register);
 router.post("/login", login);
 
+// Donor
 router.post(
   "/donor/add-food",
   authentication,
@@ -19,10 +23,12 @@ router.post(
   addFoodController,
 );
 
-// Dashboard
-// router.get("/donor", authentication, donor);
-// router.get("/ngo", authentication, getProfile);
-// router.get("/volunteer", authentication, getProfile);
+router.get(
+  "/donor/my-donations",
+  authentication,
+  requireRole(["donor"]),
+  getMyDonations,
+);
 
 router.get("/me", authentication, getProfile);
 

@@ -1,0 +1,27 @@
+.donor-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.donor-sidebar {
+  width: 220px;
+  background-color: #1A2227;
+  color: white;
+  padding: 1rem;
+}
+
+.donor-content {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #f9fafb;
+}
+
+@media (max-width: 768px) {
+  .donor-layout {
+    flex-direction: column;
+  }
+
+  .donor-sidebar {
+    width: 100%;
+  }
+}

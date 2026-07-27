@@ -1,0 +1,115 @@
+.add-food {
+  min-height: 80vh;
+  padding: 30px 20px;
+}
+
+.food-head {
+  text-align: left;
+  color: #1A2227;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+.add-food-form {
+  max-width: 100%;
+  margin: auto;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 25px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.form-group {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group-full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group label,
+.form-group-full label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input,
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea,
+.form-group-full input,
+.form-group-full textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+}
+
+.form-group textarea,
+.form-group-full textarea {
+  resize: none;
+}
+
+.add-food-button {
+  width: 180px;
+  height: 42px;
+  border: none;
+  background: #15803d;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-success,
+.form-error {
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.form-success {
+  color: #15803d;
+}
+
+.form-error {
+  color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .add-food {
+    padding: 10px 5px;
+  }
+
+  .food-head {
+    font-size: 1.7rem;
+  }
+
+  .add-food-form {
+    padding: 20px;
+  }
+
+  .form-group,
+  .form-group-full {
+    width: 100%;
+  }
+
+  .add-food-button {
+    width: 100%;
+  }
+}

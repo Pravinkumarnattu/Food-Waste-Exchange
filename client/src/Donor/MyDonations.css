@@ -1,0 +1,111 @@
+.donations-container {
+  padding: 30px 20px;
+  min-height: 50vh;
+  height: 100%;
+}
+
+.donations-head {
+  color: #1A2227;
+  font-size: 2rem;
+}
+
+.donations-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.donations-table th,
+.donations-table td {
+  border: 1px solid #d1d5db;
+  padding: 14px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.donations-table th {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status.reserved {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.status.completed {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.view-btn {
+  width: 70px;
+  height: 35px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.no-donations {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background: #f4fbf5;
+}
+
+.no-donations p {
+  font-size: 18px;
+  color: #4b5563;
+}
+
+.no-donations a {
+  text-decoration: none;
+  background: #15803d;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+
+  .donations-container {
+    padding: 20px 10px;
+    overflow-x: auto;
+  }
+
+  .donations-head {
+    font-size: 1.6rem;
+  }
+
+  .donations-table {
+    min-width: 700px;
+  }
+
+  .donations-table th,
+  .donations-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .view-btn {
+    width: 60px;
+    height: 32px;
+  }
+}

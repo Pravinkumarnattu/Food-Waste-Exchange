@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import api from "../../api/axiosInstance";
-import './index.css'
+import "./index.css";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({
@@ -24,13 +24,13 @@ const Login = () => {
       Cookies.set("role", role, { expires: 7 });
       switch (role) {
         case "donor":
-          navigate("/dashboard/donor", { replace: true });
+          navigate("/donor/dashboard", { replace: true });
           break;
         case "ngo":
-          navigate("/dashboard/ngo", { replace: true });
+          navigate("/ngo/dashboard", { replace: true });
           break;
         case "volunteer":
-          navigate("/dashboard/volunteer", { replace: true });
+          navigate("/volunteer/dashboard", { replace: true });
           break;
         default:
           setErrMsg("Unknown role, please contact support");
@@ -45,44 +45,44 @@ const Login = () => {
   };
   return (
     <div className="login-container">
-    <form onSubmit={submitLoginForm} className="login-form">
-      <h1 className="login-head">Wecome Back!</h1>
-      <p className="login-para">Login to your account</p>
-      <label htmlFor="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Enter email"
-        title="Please Enter valid email address"
-        value={userDetails.email}
-        onChange={(e) =>
-          setUserDetails({ ...userDetails, email: e.target.value })
-        }
-        required
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Enter password"
-        value={userDetails.password}
-        onChange={(e) =>
-          setUserDetails({ ...userDetails, password: e.target.value })
-        }
-        required
-        minLength={8}
-        title="Password must be at least 8 characters"
-      />
-      <button type="submit" disabled={loading} className="login-button">
-        {loading ? "Logging..." : "Login"}
-      </button>
-      <p className="no-signup">
-        Don't have an account? <Link to="/choose-goal">Sign up</Link>
-      </p>
-      {errMsg && <p className="login-error">{errMsg}</p>}
-    </form>
+      <form onSubmit={submitLoginForm} className="login-form">
+        <h1 className="login-head">Wecome Back!</h1>
+        <p className="login-para">Login to your account</p>
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter email"
+          title="Please Enter valid email address"
+          value={userDetails.email}
+          onChange={(e) =>
+            setUserDetails({ ...userDetails, email: e.target.value })
+          }
+          required
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter password"
+          value={userDetails.password}
+          onChange={(e) =>
+            setUserDetails({ ...userDetails, password: e.target.value })
+          }
+          required
+          minLength={8}
+          title="Password must be at least 8 characters"
+        />
+        <button type="submit" disabled={loading} className="login-button">
+          {loading ? "Logging..." : "Login"}
+        </button>
+        <p className="no-signup">
+          Don't have an account? <Link to="/choose-goal">Sign up</Link>
+        </p>
+        {errMsg && <p className="login-error">{errMsg}</p>}
+      </form>
     </div>
   );
 };
