@@ -30,7 +30,7 @@ const MyDonations = () => {
     fetchData();
   }, []);
 
-  const loadingView = () => <div>Loading</div>;
+  const loadingView = () => <div className="loading-view">Loading...</div>;
 
   const foodsList = () => {
     return donations.length !== 0 ? (
@@ -71,12 +71,12 @@ const MyDonations = () => {
     ) : (
       <div className="no-donations">
         <p>You haven't added any donations yet.</p>
-        <Link to="/dashboard/donor/add-food">Add Food</Link>
+        <Link to="/donor/add-food">Add Food</Link>
       </div>
     );
   };
 
-  const failureView = () => <div>{errMsg}</div>;
+  const failureView = () => <div className="failure-view">{errMsg}</div>;
 
   const render = () => {
     switch (currView) {

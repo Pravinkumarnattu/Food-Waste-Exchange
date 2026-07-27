@@ -8,6 +8,7 @@ import DonorLayout from "./Donor/DonorLayout";
 import DonorDashboard from "./Donor/DonorDashboard";
 import AddFood from "./Donor/AddFood";
 import MyDonations from "./Donor/MyDonations";
+import DonorProfile from "./Donor/DonorProfile"
 
 import "./App.css";
 
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="dashboard" element={<DonorDashboard />} />
           <Route path="add-food" element={<AddFood />} />
           <Route path="my-donations" element={<MyDonations />} />
+          <Route path="profile" element={<DonorProfile />} />
         </Route>
 
         <Route path="/unauthorized" element={<div>Unauthorized</div>} />

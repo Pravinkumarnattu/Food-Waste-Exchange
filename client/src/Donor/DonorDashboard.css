@@ -1,0 +1,158 @@
+.dashboard-container {
+  padding: 30px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+#welcome-back-head {
+  color: #15803d;
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
+.dashboard-container h1:not(#welcome-back-head) {
+  color: #1A2227;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.dashboard-card {
+  flex: 1;
+  min-width: 220px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+.dashboard-card p:first-child {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #15803d;
+  margin: 0;
+}
+
+.dashboard-card p:last-child {
+  margin-top: 10px;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.recent-foods {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.recent-foods a {
+  text-decoration: none;
+  color: #15803d;
+  font-weight: 600;
+}
+
+.dashboard-donations-container {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin-bottom: 35px;
+}
+
+.dashboard-donations-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-donations-table th {
+  background: #f3f4f6;
+  color: #1A2227;
+  padding: 15px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+}
+
+.dashboard-donations-table td {
+  padding: 15px;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  text-align: center;
+}
+
+.dashboard-donations-table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.dashboard-add-food {
+  margin-top: 20px;
+}
+
+.dashboard-add-food a {
+  display: inline-block;
+  text-decoration: none;
+  background: #15803d;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.loading-view,
+.failure-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  font-size: 1.2rem;
+  color: #1A2227;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 5px;
+  }
+
+  #welcome-back-head {
+    font-size: 1.6rem;
+  }
+
+  .dashboard-container h1:not(#welcome-back-head) {
+    font-size: 1.3rem;
+  }
+
+  .stat-card {
+    flex-direction: column;
+  }
+
+  .dashboard-card {
+    min-width: 100%;
+  }
+
+  .recent-foods {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .dashboard-donations-table th,
+  .dashboard-donations-table td {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .dashboard-add-food a {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
