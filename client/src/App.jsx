@@ -8,7 +8,7 @@ import DonorLayout from "./Donor/DonorLayout";
 import DonorDashboard from "./Donor/DonorDashboard";
 import AddFood from "./Donor/AddFood";
 import MyDonations from "./Donor/MyDonations";
-import DonorProfile from "./Donor/DonorProfile"
+import DonorProfile from "./Donor/DonorProfile";
 
 import "./App.css";
 
@@ -35,6 +35,21 @@ const App = () => {
           <Route path="add-food" element={<AddFood />} />
           <Route path="my-donations" element={<MyDonations />} />
           <Route path="profile" element={<DonorProfile />} />
+        </Route>
+
+        <Route
+          path="/ngo"
+          element={
+            <ProtectedRoute>
+              <NgoLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<NgoDashboard />} />
+          <Route path="available-food" element={<AvailableFood />} />
+          <Route path="my-reservations" element={<MyReservations />} />
+          <Route path="profile" element={<NgoProfile />} />
         </Route>
 
         <Route path="/unauthorized" element={<div>Unauthorized</div>} />
