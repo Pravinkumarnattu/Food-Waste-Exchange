@@ -1,0 +1,27 @@
+.ngo-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.ngo-sidebar {
+  width: 220px;
+  background-color: #1A2227;
+  color: #ffffff;
+  padding: 1rem;
+}
+
+.ngo-main {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #f9fafb;
+}
+
+@media (max-width: 768px) {
+  .ngo-layout {
+    flex-direction: column;
+  }
+
+  .ngo-sidebar {
+    width: 100%;
+  }
+}

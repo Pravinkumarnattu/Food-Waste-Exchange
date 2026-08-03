@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { FaBoxOpen, FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { MdDashboard, MdLogout } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Cookies from "js-cookie";
-import "./DonorSidebar.css";
+import "./NgoSidebar.css";
 
 const NgoSidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -42,7 +42,6 @@ const NgoSidebar = () => {
           <MdDashboard size={22} />
           Dashboard
         </NavLink>
-
 
         <NavLink
           to="/ngo/profile"

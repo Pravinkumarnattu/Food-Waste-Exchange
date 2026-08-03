@@ -4,11 +4,18 @@ import ChooseYourGoal from "./ChooseYourGoal";
 import Register from "./Authentication/Register";
 import Login from "./Authentication/Login";
 import ProtectedRoute from "./ProtectedRoute/index";
+
 import DonorLayout from "./Donor/DonorLayout";
 import DonorDashboard from "./Donor/DonorDashboard";
 import AddFood from "./Donor/AddFood";
 import MyDonations from "./Donor/MyDonations";
 import DonorProfile from "./Donor/DonorProfile";
+
+import NgoLayout from "./Ngo/NgoLayout";
+import NgoDashboard from "./Ngo/NgoDashboard";
+import AvailableFood from "./Ngo/AvailableFood";
+import MyReservations from "./Ngo/MyReservations";
+import NgoProfile from "./Ngo/NgoProfile";
 
 import "./App.css";
 
@@ -40,7 +47,7 @@ const App = () => {
         <Route
           path="/ngo"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={["ngo"]}>
               <NgoLayout />
             </ProtectedRoute>
           }

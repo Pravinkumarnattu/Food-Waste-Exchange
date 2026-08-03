@@ -7,10 +7,10 @@ const DonorLayout = () => {
   return (
     <div className="donor-layout">
       <DonorSidebar />
-      <div className="donor-content">
+      <main className="donor-content">
         <DonorTopbar />
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 };
