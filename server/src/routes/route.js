@@ -10,6 +10,8 @@ const login = require("../controllers/login");
 const addFoodController = require("../controllers/addFoodController");
 const getMyDonations = require("../controllers/getMyDonations");
 
+const getAvailableFoods = require("../controllers/getAvailableFoods");
+
 const getProfile = require("../controllers/profileController");
 
 router.post("/register", register);
@@ -28,6 +30,14 @@ router.get(
   authentication,
   requireRole(["donor"]),
   getMyDonations,
+);
+
+// NGO
+router.get(
+  "/ngo/available-foods",
+  authentication,
+  requireRole(["ngo"]),
+  getAvailableFoods,
 );
 
 router.get("/me", authentication, getProfile);

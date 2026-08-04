@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaUtensils, FaClipboardCheck } from "react-icons/fa";
 import { MdDashboard, MdLogout } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Cookies from "js-cookie";
@@ -21,10 +21,7 @@ const NgoSidebar = () => {
       <div className="mobile-header">
         <img src="/logo_white.png" alt="logo" className="mobile-logo" />
 
-        <button
-          className="menu-btn"
-          onClick={() => setShowMenu(!showMenu)}
-        >
+        <button className="menu-btn" onClick={() => setShowMenu(!showMenu)}>
           <RxHamburgerMenu size={25} />
         </button>
       </div>
@@ -41,6 +38,28 @@ const NgoSidebar = () => {
         >
           <MdDashboard size={22} />
           Dashboard
+        </NavLink>
+
+        <NavLink
+          to="/ngo/available-foods"
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+          onClick={() => setShowMenu(false)}
+        >
+          <FaUtensils size={22} />
+          Available Foods
+        </NavLink>
+
+        <NavLink
+          to="/ngo/my-reservations"
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+          onClick={() => setShowMenu(false)}
+        >
+          <FaClipboardCheck size={22} />
+          My Reservations
         </NavLink>
 
         <NavLink

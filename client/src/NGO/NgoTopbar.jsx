@@ -12,7 +12,7 @@ const NgoTopbar = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const response = await api.get("/auth/me");
-      setBusinessName(response?.data?.ngo?.businessName);
+      setBusinessName(response?.data?.ngo?.organizationName);
     };
     fetchUser();
   }, []);

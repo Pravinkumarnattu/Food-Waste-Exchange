@@ -54,7 +54,7 @@ const App = () => {
         >
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<NgoDashboard />} />
-          <Route path="available-food" element={<AvailableFood />} />
+          <Route path="available-foods" element={<AvailableFood />} />
           <Route path="my-reservations" element={<MyReservations />} />
           <Route path="profile" element={<NgoProfile />} />
         </Route>
