@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../api/axiosInstance";
+import "./AvailableFood.css";
 
 const views = {
   initial: "INITIAL",
@@ -35,19 +36,23 @@ const AvailableFood = () => {
     return availableFoods.length !== 0 ? (
       <div className="foods-container">
         {availableFoods.map((food) => {
-          const { foodName, quantity, expiryTime, pickupAddress, image } =
-            availableFoods;
-          console.log(expiryTime);
+          const { foodName, quantity, expiryTime, pickupAddress, image, _id } =
+            food;
+            const timeDiff = new Date(expiryTime) - new Date();
+            const hour = Math.floor(timeDiff/(1000 * 60 * 60));
+            const minute = Math.floor((timeDiff/(1000 * 60)) % 60);
           return (
-            <div>
-              <img src={image} alt="food" />
-              <div>
-                <h1>{foodName}</h1>
-                <p>{pickupAddress}</p>
+            <div key={_id} className="food-card">
+              <img src={image ?? "/home_image.png"} alt="food" className="food-image"/>
+              <div className="food-details">
+                <h3>{foodName}</h3>
+                <p className="pickup-address">{pickupAddress}</p>
               </div>
-              <p>{quantity}</p>
-              <h1>{expiryTime}</h1>
-              <button>Reserve</button>
+              <p className="food-quantity">{quantity}</p>
+              <h3 className="expiry-time">Expires in {hour} hours {minute} minutes</h3>
+              <button type="button" className="reserve-btn">
+                Reserve
+              </button>
             </div>
           );
         })}

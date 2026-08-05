@@ -1,0 +1,113 @@
+.foods-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+}
+
+.food-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 15px 20px;
+}
+
+.food-image {
+  width: 75px;
+  height: 75px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #d1d5db;
+}
+
+.food-details {
+    flex: 1;
+}
+
+.food-details h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #1a2227;
+}
+
+.pickup-address {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.food-quantity {
+  width: 110px;
+  text-align: center;
+  font-weight: 600;
+  color: #374151;
+}
+
+.expiry-time {
+  width: 170px;
+  text-align: center;
+  color: #15803d;
+  font-size: 16px;
+}
+
+.reserve-btn {
+  width: 110px;
+  height: 42px;
+  border: none;
+  background: #15803d;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.reserve-btn:hover {
+  background: #166534;
+}
+
+.no-foods,
+.loading-view,
+.failure-view {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 18px;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .foods-container {
+    padding: 12px;
+  }
+
+  .food-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .food-image {
+    width: 100%;
+    max-width: 220px;
+    height: 150px;
+    align-self: center;
+  }
+
+  .food-details {
+    width: 100%;
+  }
+
+  .food-quantity,
+  .expiry-time {
+    width: 100%;
+    text-align: left;
+  }
+
+  .reserve-btn {
+    width: 100%;
+  }
+}
