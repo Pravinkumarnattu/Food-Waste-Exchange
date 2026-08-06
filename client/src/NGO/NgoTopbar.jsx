@@ -3,6 +3,7 @@ import api from "../api/axiosInstance";
 import { Link } from "react-router-dom";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
+import Cookies from "js-cookie";
 import "./NgoTopbar.css";
 
 const NgoTopbar = () => {
@@ -30,6 +31,16 @@ const NgoTopbar = () => {
           onClick={() => setDropdownOpen(false)}
         >
           <Link to="/ngo/profile">Profile</Link>
+          <Link
+            to="/login"
+            replace
+            onClick={() => {
+              Cookies.remove("jwt_token");
+              Cookies.remove("role");
+            }}
+          >
+            Logout
+          </Link>
         </div>
       )}
     </div>

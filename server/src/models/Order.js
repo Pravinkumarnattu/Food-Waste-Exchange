@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ordersSchema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
   {
     foodId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -26,10 +26,10 @@ const ordersSchema = new mongoose.Schema(
     },
     deliveryTime: {
       type: Date,
-    }
+    },
   },
   { timestamps: true },
 );
 
-const Order = mongoose.model("Order", ordersSchema);
+const Order = mongoose.model("Order", orderSchema);
 module.exports = Order;

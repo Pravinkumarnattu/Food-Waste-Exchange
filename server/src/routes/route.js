@@ -40,6 +40,13 @@ router.get(
   getAvailableFoods,
 );
 
+router.post(
+  "/ngo/reserve-food/:foodId",
+  authentication,
+  requireRole(["ngo"]),
+  require("../controllers/reserveFood"),
+);
+
 router.get("/me", authentication, getProfile);
 
 module.exports = router;

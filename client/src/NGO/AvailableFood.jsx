@@ -30,6 +30,19 @@ const AvailableFood = () => {
     fetchAvailableFoods();
   }, []);
 
+  const reserveFood = async (foodId) => {
+    try {
+      const response = await api.post(`/dashboard/ngo/reserve-food/${foodId}`);
+      console.log(response);
+      if(response.status === 201){
+        alert(response?.data?.message || "Food reserved successfully.");
+        const updatedFoods = availableFoods.filter(food => food._id !== foodId);
+        setAvailableFoods(updatedFoods);
+      }
+    } catch (err) {
+      alert(err?.response?.data?.message || "An error occurred while reserving food.");
+    }
+  };
   const loadingView = () => <div className="loading-view">Loading...</div>;
 
   const foodDetails = () => {
@@ -38,19 +51,29 @@ const AvailableFood = () => {
         {availableFoods.map((food) => {
           const { foodName, quantity, expiryTime, pickupAddress, image, _id } =
             food;
-            const timeDiff = new Date(expiryTime) - new Date();
-            const hour = Math.floor(timeDiff/(1000 * 60 * 60));
-            const minute = Math.floor((timeDiff/(1000 * 60)) % 60);
+          const timeDiff = new Date(expiryTime) - new Date();
+          const hour = Math.floor(timeDiff / (1000 * 60 * 60));
+          const minute = Math.floor((timeDiff / (1000 * 60)) % 60);
           return (
             <div key={_id} className="food-card">
-              <img src={image ?? "/home_image.png"} alt="food" className="food-image"/>
+              <img
+                src={image ?? "/home_image.png"}
+                alt="food"
+                className="food-image"
+              />
               <div className="food-details">
                 <h3>{foodName}</h3>
                 <p className="pickup-address">{pickupAddress}</p>
               </div>
               <p className="food-quantity">{quantity}</p>
-              <h3 className="expiry-time">Expires in {hour} hours {minute} minutes</h3>
-              <button type="button" className="reserve-btn">
+              <h3 className="expiry-time">
+                Expires in {hour} hours {minute} minutes
+              </h3>
+              <button
+                type="button"
+                className="reserve-btn"
+                onClick={() =>reserveFood(_id)}
+              >
                 Reserve
               </button>
             </div>
