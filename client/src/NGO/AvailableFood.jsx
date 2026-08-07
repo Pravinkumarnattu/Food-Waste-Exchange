@@ -13,34 +13,47 @@ const AvailableFood = () => {
   const [availableFoods, setAvailableFoods] = useState([]);
   const [errMsg, setErrMsg] = useState("");
   const [currView, setCurrView] = useState(views.initial);
+  const [reservedFoodId, setReservedFoodId] = useState(null);
+
+  const fetchAvailableFoods = async () => {
+    try {
+      setCurrView(views.loading);
+      const response = await api.get("/dashboard/ngo/available-foods");
+      setAvailableFoods(response?.data);
+      setCurrView(views.success);
+    } catch (err) {
+      setCurrView(views.failure);
+      setErrMsg(err?.response?.data?.message);
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
-    const fetchAvailableFoods = async () => {
-      try {
-        setCurrView(views.loading);
-        const response = await api.get("/dashboard/ngo/available-foods");
-        setAvailableFoods(response?.data);
-        setCurrView(views.success);
-      } catch (err) {
-        setCurrView(views.failure);
-        setErrMsg(err?.response?.data?.message);
-        console.error(err);
-      }
-    };
     fetchAvailableFoods();
   }, []);
 
   const reserveFood = async (foodId) => {
     try {
+      setReservedFoodId(foodId);
       const response = await api.post(`/dashboard/ngo/reserve-food/${foodId}`);
-      console.log(response);
-      if(response.status === 201){
-        alert(response?.data?.message || "Food reserved successfully.");
-        const updatedFoods = availableFoods.filter(food => food._id !== foodId);
+      if (response.status === 201) {
+        const updatedFoods = availableFoods.filter(
+          (food) => food._id !== foodId,
+        );
         setAvailableFoods(updatedFoods);
+        setErrMsg("");
       }
     } catch (err) {
-      alert(err?.response?.data?.message || "An error occurred while reserving food.");
+      setErrMsg(
+        err?.response?.data?.message ||
+          "An error occurred while reserving food.",
+      );
+      console.error(err);
+      if(err?.response?.status === 409) {
+        fetchAvailableFoods();
+      }
+    } finally {
+      setReservedFoodId(null);
     }
   };
   const loadingView = () => <div className="loading-view">Loading...</div>;
@@ -48,6 +61,7 @@ const AvailableFood = () => {
   const foodDetails = () => {
     return availableFoods.length !== 0 ? (
       <div className="foods-container">
+        <p className="reserve-error">{errMsg}</p>
         {availableFoods.map((food) => {
           const { foodName, quantity, expiryTime, pickupAddress, image, _id } =
             food;
@@ -72,9 +86,10 @@ const AvailableFood = () => {
               <button
                 type="button"
                 className="reserve-btn"
-                onClick={() =>reserveFood(_id)}
+                onClick={() => reserveFood(_id)}
+                disabled={reservedFoodId === _id}
               >
-                Reserve
+                {reservedFoodId === _id ? "Reserving..." : "Reserve"}
               </button>
             </div>
           );

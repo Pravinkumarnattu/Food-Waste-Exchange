@@ -79,6 +79,11 @@
   color: #6b7280;
 }
 
+.reserve-error {
+  color: red;
+  font-size: 14px;
+}
+
 @media (max-width: 768px) {
   .foods-container {
     padding: 12px;

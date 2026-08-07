@@ -47,6 +47,14 @@ router.post(
   require("../controllers/reserveFood"),
 );
 
+router.get(
+  "/ngo/my-reservations",
+  authentication,
+  requireRole(["ngo"]),
+  require("../controllers/myReservations"),
+);
+
+
 router.get("/me", authentication, getProfile);
 
 module.exports = router;
