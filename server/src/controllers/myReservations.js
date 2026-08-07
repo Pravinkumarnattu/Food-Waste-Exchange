@@ -5,7 +5,7 @@ const myReservations = async (req, res) => {
     const reservations = await Order.find({ ngoId: req.user.id })
       .populate("foodId")
       .sort({ createdAt: -1 });
-    return res.status(200).json({ reservations });
+    return res.status(200).json(reservations);
   } catch (err) {
     console.log(err);
     return res
