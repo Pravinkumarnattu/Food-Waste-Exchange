@@ -1,0 +1,158 @@
+.my-reservations-container {
+  width: 100%;
+}
+
+.reservations-head {
+  margin: 0 0 25px;
+  color: #1a2227;
+  font-size: 24px;
+}
+
+.reservations-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.reservations-table thead {
+  background: #fafafa;
+}
+
+.reservations-table th {
+  padding: 16px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a2227;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.reservations-table th,
+.reservations-table td {
+  border-right: 1px solid #e5e7eb;
+}
+
+.reservations-table th:last-child,
+.reservations-table td:last-child {
+  border-right: none;
+}
+
+.reservations-table td {
+  padding: 14px 10px;
+  font-size: 14px;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.reservations-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reservations-table tbody td:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.reserved-food-image {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+}
+
+.reservations-table tbody td:first-child span {
+  font-weight: 500;
+  color: #1a2227;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.status-badge.reserved {
+  background-color: #2564eb1d;
+  color: #2563eb;
+}
+
+
+.status-badge.pickedup {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.status-badge.delivered {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.no-reservations {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  color: #6b7280;
+}
+
+.no-reservations a {
+  margin-top: 10px;
+  padding: 9px 16px;
+  background: #15803d;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+
+.loading-view {
+  text-align: center;
+  padding: 50px;
+  color: #6b7280;
+}
+
+
+@media (max-width: 768px) {
+  .my-reservations-container {
+    overflow-x: auto;
+  }
+
+  .reservations-head {
+    font-size: 21px;
+    margin-bottom: 18px;
+  }
+
+  .reservations-table {
+    min-width: 850px;
+  }
+
+  .reservations-table th {
+    padding: 13px 10px;
+    font-size: 12px;
+  }
+
+  .reservations-table td {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .reserved-food-image {
+    width: 42px;
+    height: 42px;
+  }
+}

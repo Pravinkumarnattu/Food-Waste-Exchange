@@ -61,6 +61,7 @@ const AvailableFood = () => {
   const foodDetails = () => {
     return availableFoods.length !== 0 ? (
       <div className="foods-container">
+        <h1 className="foods-tittle">Available Foods</h1>
         <p className="reserve-error">{errMsg}</p>
         {availableFoods.map((food) => {
           const { foodName, quantity, expiryTime, pickupAddress, image, _id } =

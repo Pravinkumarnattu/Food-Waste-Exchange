@@ -47,11 +47,19 @@ const MyDonations = () => {
           </thead>
           <tbody>
             {donations.map((food) => {
-              const { foodName, quantity, expiryTime, status } = food;
+              const { foodName, quantity, expiryTime, status, image } = food;
               const time = new Date(expiryTime).toLocaleString();
               return (
                 <tr key={food._id}>
-                  <td>{foodName}</td>
+                  <td>
+                    <div className="food-name-cell">
+                      <img
+                        src={image ?? "/home_image.png"}
+                        className="donations-food-image"
+                      />
+                      <span>{foodName}</span>
+                    </div>
+                  </td>
                   <td>{quantity}</td>
                   <td>{time}</td>
                   <td>

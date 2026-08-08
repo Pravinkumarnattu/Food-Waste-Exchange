@@ -2,23 +2,27 @@
   padding: 30px 20px;
   min-height: 50vh;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .donations-head {
-  color: #1A2227;
+  color: #1a2227;
   font-size: 2rem;
+  margin-bottom: 25px;
 }
 
 .donations-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   background: #ffffff;
+  border: 1px solid #d1d5db;
 }
 
 .donations-table th,
 .donations-table td {
   border: 1px solid #d1d5db;
-  padding: 14px;
+  padding: 12px 14px;
   text-align: center;
   font-size: 15px;
 }
@@ -26,12 +30,38 @@
 .donations-table th {
   background: #f3f4f6;
   color: #374151;
+  font-weight: 600;
+}
+
+.donations-table td:first-child {
+  padding: 10px;
+}
+
+.food-name-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.donations-food-image {
+  width: 55px;
+  height: 55px;
+  min-width: 55px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.food-name-cell span {
+  color: #1a2227;
+  font-weight: 500;
 }
 
 .status {
   display: inline-block;
   padding: 6px 12px;
-  border-radius: 4px;
+  border-radius: 5px;
   font-size: 14px;
   font-weight: 600;
 }
@@ -83,8 +113,8 @@
   border-radius: 5px;
 }
 
-@media (max-width: 768px) {
 
+@media (max-width: 768px) {
   .donations-container {
     padding: 20px 10px;
     overflow-x: auto;
@@ -102,6 +132,12 @@
   .donations-table td {
     padding: 10px;
     font-size: 14px;
+  }
+
+  .donations-food-image {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
   }
 
   .view-btn {
