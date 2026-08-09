@@ -71,6 +71,7 @@ const MyReservations = () => {
                       <img
                         src={image ?? "/home_image.png"}
                         className="reserved-food-image"
+                        alt="food-image"
                       />
                       <span>{foodName}</span>
                     </td>

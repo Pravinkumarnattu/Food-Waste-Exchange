@@ -1,0 +1,229 @@
+.dashboard-container {
+  padding: 30px;
+  background: #f8fafc;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+
+#welcome-back-head {
+  color: #15803d;
+  font-size: 2rem;
+  margin: 0 0 25px;
+}
+
+
+.dashboard-container h1:not(#welcome-back-head) {
+  color: #1a2227;
+  font-size: 1.6rem;
+  margin: 0 0 20px;
+}
+
+.stat-card {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.dashboard-card {
+  flex: 1;
+  min-width: 200px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-card p:first-child {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #15803d;
+  margin: 0;
+}
+
+.dashboard-card p:last-child {
+  margin: 10px 0 0;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.recent-foods {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.recent-foods h1 {
+  margin: 0 !important;
+}
+
+.recent-foods a {
+  text-decoration: none;
+  color: #15803d;
+  font-weight: 600;
+}
+
+
+.dashboard-reserved-container {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin-bottom: 35px;
+}
+
+
+.dashboard-reservations-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 850px;
+}
+
+.dashboard-reservations-table th {
+  background: #f3f4f6;
+  color: #1a2227;
+  padding: 15px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.dashboard-reservations-table td {
+  padding: 12px 15px;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.dashboard-reservations-table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.dashboard-reservations-table td:first-child {
+  min-width: 180px;
+}
+
+.dashboard-reservations-table td:first-child {
+  display: table-cell;
+}
+
+.reserved-food-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.dashboard-reservations-table td:first-child span {
+  vertical-align: middle;
+  font-weight: 500;
+  color: #1a2227;
+}
+
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-badge.reserved {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.status-badge.pickedup {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.status-badge.delivered {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+
+.dashboard-reserve-food {
+  margin-top: 20px;
+}
+
+.dashboard-reserve-food a {
+  display: inline-block;
+  text-decoration: none;
+  background: #15803d;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.loading-view,
+.failure-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  font-size: 1.2rem;
+  color: #1a2227;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px 10px;
+  }
+
+  #welcome-back-head {
+    font-size: 1.6rem;
+  }
+
+  .dashboard-container h1:not(#welcome-back-head) {
+    font-size: 1.3rem;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dashboard-card {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .recent-foods {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .dashboard-reserved-container {
+    overflow-x: auto;
+  }
+
+  .dashboard-reservations-table th,
+  .dashboard-reservations-table td {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .reserved-food-image {
+    width: 45px;
+    height: 45px;
+  }
+
+  .dashboard-reserve-food a {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}

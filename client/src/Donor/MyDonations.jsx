@@ -56,6 +56,7 @@ const MyDonations = () => {
                       <img
                         src={image ?? "/home_image.png"}
                         className="donations-food-image"
+                        alt="food-image"
                       />
                       <span>{foodName}</span>
                     </div>
