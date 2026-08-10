@@ -18,7 +18,7 @@ const orderSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["reserved", "pickedup", "delivered"],
+      enum: ["reserved", "accepted", "pickedup", "delivered"],
       default: "reserved",
     },
     pickupTime: {
