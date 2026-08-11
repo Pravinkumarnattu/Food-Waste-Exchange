@@ -54,6 +54,14 @@ router.get(
   require("../controllers/myReservations"),
 );
 
+//Volunteer
+
+router.get(
+  "/volunteer/pickup-requests",
+  authentication,
+  requireRole(["ngo"]),
+  require("../controllers/pickupRequests"),
+);
 
 router.get("/me", authentication, getProfile);
 

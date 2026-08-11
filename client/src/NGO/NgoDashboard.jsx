@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/axiosInstance";
-import "./NgoDashboard.css"
+import "./NgoDashboard.css";
 
 const views = {
   initial: "INITIAL",
