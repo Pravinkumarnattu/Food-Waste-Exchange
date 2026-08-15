@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 import VolunteerSidebar from "./VolunteerSidebar";
 import VolunteerTopbar from "./VolunteerTopbar";
+import "./VolunteerLayout.css"
 
 const VolunteerLayout = () => {
   return (
-    <div>
+    <div className="volunteer-layout">
       <VolunteerSidebar />
-      <main>
+      <main className="volunteer-main">
         <VolunteerTopbar />
         <Outlet />
       </main>

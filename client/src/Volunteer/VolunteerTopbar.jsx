@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
 import Cookies from "js-cookie";
+import "./VolunteerTopbar.css"
 
 const VolunteerTopbar = () => {
   const [businessName, setBusinessName] = useState("");
@@ -18,7 +19,7 @@ const VolunteerTopbar = () => {
   }, []);
 
   return (
-    <div className="ngo-topbar">
+    <div className="volunteer-topbar">
       <button onClick={() => setDropdownOpen(!dropdownOpen)}>
         <MdAccountCircle size={24} color="#15803D" />
         {businessName}
@@ -26,10 +27,10 @@ const VolunteerTopbar = () => {
       </button>
       {dropdownOpen && (
         <div
-          className="ngo-topbar-dropdown"
+          className="volunteer-topbar-dropdown"
           onClick={() => setDropdownOpen(false)}
         >
-          <Link to="/ngo/profile">Profile</Link>
+          <Link to="/volunteer/profile">Profile</Link>
           <Link
             to="/login"
             replace

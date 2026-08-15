@@ -19,7 +19,9 @@ const reserveFood = async (req, res) => {
     const newOrder = await Order.create(order);
     food.status = "reserved";
     await food.save();
-    return res.status(201).json({ message: "Food reserved successfully", order: newOrder });
+    return res
+      .status(201)
+      .json({ message: "Food reserved successfully", order: newOrder });
   } catch (err) {
     return res
       .status(500)

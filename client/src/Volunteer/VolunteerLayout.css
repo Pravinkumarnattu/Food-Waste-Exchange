@@ -1,0 +1,27 @@
+.volunteer-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.volunteer-sidebar {
+  width: 220px;
+  background-color: #1A2227;
+  color: #ffffff;
+  padding: 1rem;
+}
+
+.volunteer-main {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #f9fafb;
+}
+
+@media (max-width: 768px) {
+  .volunteer-layout {
+    flex-direction: column;
+  }
+
+  .volunteer-sidebar {
+    width: 100%;
+  }
+}

@@ -1,0 +1,190 @@
+.reserved-foods-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+}
+
+.reserved-foods-tittle {
+  margin: 0 0 5px;
+  font-size: 1.8rem;
+  color: #1a2227;
+}
+
+.reserved-food-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 15px 20px;
+}
+
+.reserved-food-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.reserved-food-image {
+  width: 75px;
+  height: 75px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #d1d5db;
+  flex-shrink: 0;
+}
+
+.reserved-food-details {
+  flex: 1;
+}
+
+.reserved-food-details h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #1a2227;
+}
+
+.reserved-food-details p {
+  margin: 3px 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.reserved-food-details .pickup-address {
+  color: #6b7280;
+}
+
+.reserved-expiry-time {
+  width: 170px;
+  text-align: center;
+  color: #15803d;
+  font-size: 15px;
+  margin: 0;
+}
+
+.reserved-time {
+  width: 170px;
+  text-align: center;
+}
+
+.reserved-time h1 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #1a2227;
+}
+
+.reserved-time p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.accept-btn {
+  width: 110px;
+  height: 42px;
+  border: none;
+  background: #15803d;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.accept-btn:hover {
+  background: #166534;
+}
+
+.accept-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.accept-error {
+  color: red;
+  font-size: 14px;
+  margin: 0;
+}
+
+.no-reserved-foods,
+.loading-view,
+.failure-view {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 18px;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .reserved-foods-container {
+    padding: 12px;
+    gap: 15px;
+  }
+
+  .reserved-foods-tittle {
+    font-size: 1.5rem;
+  }
+
+  .reserved-food-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .reserved-food-info {
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .reserved-food-image {
+    width: 75px;
+    height: 75px;
+  }
+
+  .reserved-food-details {
+    width: 100%;
+  }
+
+  .reserved-food-details h3 {
+    font-size: 18px;
+  }
+
+  .reserved-food-details p {
+    font-size: 14px;
+  }
+
+  .reserved-expiry-time {
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+  }
+
+  .reserved-time {
+    width: 100%;
+    text-align: left;
+  }
+
+  .reserved-time h1 {
+    font-size: 14px;
+  }
+
+  .reserved-time p {
+    font-size: 14px;
+  }
+
+  .accept-btn {
+    width: 100%;
+    height: 42px;
+    font-size: 15px;
+  }
+}

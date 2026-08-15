@@ -59,10 +59,40 @@ router.get(
 router.get(
   "/volunteer/pickup-requests",
   authentication,
-  requireRole(["ngo"]),
+  requireRole(["volunteer"]),
   require("../controllers/pickupRequests"),
 );
 
+router.post(
+  "/volunteer/accept-food/:id",
+  authentication,
+  requireRole(["volunteer"]),
+  require("../controllers/acceptFood"), 
+);
+
+router.get(
+  "/volunteer/my-deliveries",
+  authentication,
+  requireRole(["volunteer"]),
+  require("../controllers/myDeliveries"),
+);
+
+
+
+// router.patch(
+//   "/volunteer/mark-pickedup/:id",
+//   authentication,
+//   requireRole(["volunteer"]),
+//   require("../controllers/acceptFood"), 
+// );
+
+// router.patch(
+//   "/volunteer/mark-delivered/:id",
+//   authentication,
+//   requireRole(["volunteer"]),
+//   require("../controllers/acceptFood"), 
+// );
+
 router.get("/me", authentication, getProfile);
 
-module.exports = router;
+module.exports = router
