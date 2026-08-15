@@ -17,8 +17,13 @@ import AvailableFood from "./Ngo/AvailableFood";
 import MyReservations from "./Ngo/MyReservations";
 import NgoProfile from "./Ngo/NgoProfile";
 
-import "./App.css";
+import VolunteerLayout from "./Volunteer/VolunteerLayout";
+import VolunteerDashboard from "./Volunteer/VolunteerDashboard";
+import PickupRequests from "./Volunteer/PickupRequests"
+import MyDeliveries from "./Volunteer/MyDeliveries"
+import VolunteerProfile from "./Volunteer/VolunteerProfile"
 
+import "./App.css";
 const App = () => {
   return (
     <BrowserRouter>
@@ -57,6 +62,21 @@ const App = () => {
           <Route path="available-foods" element={<AvailableFood />} />
           <Route path="my-reservations" element={<MyReservations />} />
           <Route path="profile" element={<NgoProfile />} />
+        </Route>
+
+        <Route
+          path="/volunteer"
+          element={
+            <ProtectedRoute allowedRoles={["volunteer"]}>
+              <VolunteerLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<VolunteerDashboard />} />
+          <Route path="pickup-requests" element={<PickupRequests />} />
+          <Route path="my-deliveries" element={<MyDeliveries />} />
+          <Route path="profile" element={<VolunteerProfile />} />
         </Route>
 
         <Route path="/unauthorized" element={<div>Unauthorized</div>} />
