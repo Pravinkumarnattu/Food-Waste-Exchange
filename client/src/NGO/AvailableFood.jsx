@@ -77,10 +77,10 @@ const AvailableFood = () => {
                 className="food-image"
               />
               <div className="food-details">
-                <h3>{foodName}</h3>
-                <p className="pickup-address">{pickupAddress}</p>
+                <h3>Food Name: {foodName}</h3>
+                <p className="pickup-address">Address: {pickupAddress}</p>
               </div>
-              <p className="food-quantity">{quantity}</p>
+              <p className="food-quantity">{quantity} Left</p>
               <h3 className="expiry-time">
                 Expires in {hour} hours {minute} minutes
               </h3>

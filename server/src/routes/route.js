@@ -63,7 +63,7 @@ router.get(
   require("../controllers/pickupRequests"),
 );
 
-router.post(
+router.patch(
   "/volunteer/accept-food/:id",
   authentication,
   requireRole(["volunteer"]),
@@ -77,21 +77,19 @@ router.get(
   require("../controllers/myDeliveries"),
 );
 
+router.patch(
+  "/volunteer/mark-pickedup/:id",
+  authentication,
+  requireRole(["volunteer"]),
+  require("../controllers/markPickedUp"), 
+);
 
-
-// router.patch(
-//   "/volunteer/mark-pickedup/:id",
-//   authentication,
-//   requireRole(["volunteer"]),
-//   require("../controllers/acceptFood"), 
-// );
-
-// router.patch(
-//   "/volunteer/mark-delivered/:id",
-//   authentication,
-//   requireRole(["volunteer"]),
-//   require("../controllers/acceptFood"), 
-// );
+router.patch(
+  "/volunteer/mark-delivered/:id",
+  authentication,
+  requireRole(["volunteer"]),
+  require("../controllers/markDelivered"), 
+);
 
 router.get("/me", authentication, getProfile);
 

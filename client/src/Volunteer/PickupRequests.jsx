@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../api/axiosInstance";
-import "./PickupRequests.css"
+import "./PickupRequests.css";
 
 const views = {
   initial: "INITIAL",
@@ -37,7 +37,7 @@ const PickupRequests = () => {
   const acceptFood = async (orderId) => {
     try {
       setAcceptOrderId(orderId);
-      const reserved = await api.post(
+      const reserved = await api.patch(
         `/dashboard/volunteer/accept-food/${orderId}`,
       );
       if (reserved.status === 201) {
@@ -61,11 +61,14 @@ const PickupRequests = () => {
   };
 
   const reservedFoodDetails = () => {
-    return reservedFoods.length !== 0 ? (
+    const activeFoods = reservedFoods.filter((food) => {
+      return new Date(food?.foodId?.expiryTime) >= new Date();
+    });
+    return activeFoods.length !== 0 ? (
       <div className="reserved-foods-container">
         <h1 className="reserved-foods-tittle">Pickup Requests</h1>
         <p className="accept-error">{errMsg}</p>
-        {reservedFoods.map((food) => {
+        {activeFoods.map((food) => {
           const { foodName, pickupAddress, image, donorId, expiryTime } =
             food.foodId;
           const timeDiff = new Date(expiryTime) - new Date();
@@ -83,42 +86,40 @@ const PickupRequests = () => {
             },
           );
           return (
-            new Date(expiryTime) >= new Date() && (
-              <div key={food._id} className="reserved-food-card">
-                <div className="reserved-food-info">
-                  <img
-                    src={image ?? "/home_image.png"}
-                    alt="food"
-                    className="reserved-food-image"
-                  />
-                  <div className="reserved-food-details">
-                    <h3>{foodName}</h3>
-                    <p>From: {donorId?.donor?.businessName}</p>
-                    <p className="pickup-address">
-                      Pickup Address: {pickupAddress}
-                    </p>
-                  </div>
+            <div key={food._id} className="reserved-food-card">
+              <div className="reserved-food-info">
+                <img
+                  src={image ?? "/home_image.png"}
+                  alt="food"
+                  className="reserved-food-image"
+                />
+                <div className="reserved-food-details">
+                  <h3>{foodName}</h3>
+                  <p>From: {donorId?.donor?.businessName}</p>
+                  <p className="pickup-address">
+                    Pickup Address: {pickupAddress}
+                  </p>
                 </div>
-
-                <h3 className="reserved-expiry-time">
-                  Expires in {hour} hours {minute} minutes
-                </h3>
-
-                <div className="reserved-time">
-                  <h1>NGO Reserved Time</h1>
-                  <p>{reservedTime}</p>
-                </div>
-
-                <button
-                  type="button"
-                  className="accept-btn"
-                  onClick={() => acceptFood(food._id)}
-                  disabled={acceptOrderId === food._id}
-                >
-                  {acceptOrderId === food._id ? "Accepting..." : "Accept"}
-                </button>
               </div>
-            )
+
+              <h3 className="reserved-expiry-time">
+                Expires in {hour} hours {minute} minutes
+              </h3>
+
+              <div className="reserved-time">
+                <h1>NGO Reserved Time</h1>
+                <p>{reservedTime}</p>
+              </div>
+
+              <button
+                type="button"
+                className="accept-btn"
+                onClick={() => acceptFood(food._id)}
+                disabled={acceptOrderId === food._id}
+              >
+                {acceptOrderId === food._id ? "Accepting..." : "Accept"}
+              </button>
+            </div>
           );
         })}
       </div>

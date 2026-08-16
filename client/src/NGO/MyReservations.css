@@ -82,7 +82,7 @@
 }
 
 .status-badge.reserved {
-  background-color: #2564eb1d;
+  background-color: #5682e23f;
   color: #2563eb;
 }
 
@@ -95,6 +95,11 @@
 .status-badge.delivered {
   background-color: #dcfce7;
   color: #166534;
+}
+
+.status-badge.accepted {
+  background-color: rgba(255, 0, 47, 0.147);
+  color: rgba(255, 0, 47, 0.655);
 }
 
 .no-reservations {
