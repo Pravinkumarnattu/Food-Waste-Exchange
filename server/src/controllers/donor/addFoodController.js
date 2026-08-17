@@ -1,4 +1,4 @@
-const Food = require("../models/Food");
+const Food = require("../../models/Food");
 
 const addFoodController = async (req, res) => {
   const { foodName, foodType, quantity, dateTime, pickupAddress } = req.body;

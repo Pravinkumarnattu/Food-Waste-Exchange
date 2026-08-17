@@ -1,4 +1,4 @@
-const Order = require("../models/Order");
+const Order = require("../../models/Order");
 
 const acceptFood = async (req, res) => {
   try {

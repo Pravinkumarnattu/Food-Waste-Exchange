@@ -1,6 +1,7 @@
-const Order = require("../models/Order");
+const Order = require("../../models/Order");
+const Food = require("../../models/Food");
 
-const markPickedUp = async (req, res) => {
+const markDelivered = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
     if (!order) {
@@ -11,15 +12,16 @@ const markPickedUp = async (req, res) => {
         .status(403)
         .json({ message: "You are not allowed to do this" });
     }
-    if (order.status !== "accepted") {
+    if (order.status !== "pickedup") {
       return res
         .status(409)
-        .json({ message: "Order is no longer available to pickup" });
+        .json({ message: "Order is no longer available to deliver" });
     }
-    order.status = "pickedup";
-    order.pickupTime = new Date();
+    order.status = "delivered";
+    order.deliveryTime = new Date();
     await order.save();
-    return res.status(200).json({ message: "Marked as picked up", order });
+    await Food.findByIdAndUpdate(order.foodId, { status: "completed" });
+    return res.status(200).json({ message: "Marked as delivered", order });
   } catch (err) {
     return res
       .status(500)
@@ -27,4 +29,4 @@ const markPickedUp = async (req, res) => {
   }
 };
 
-module.exports = markPickedUp;
+module.exports = markDelivered;

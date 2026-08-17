@@ -1,5 +1,5 @@
-const Food = require("../models/Food");
-const Order = require("../models/Order");
+const Food = require("../../models/Food");
+const Order = require("../../models/Order");
 
 const reserveFood = async (req, res) => {
   try {

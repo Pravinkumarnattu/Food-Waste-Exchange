@@ -4,13 +4,11 @@ const router = express.Router();
 const authentication = require("../middleware/auth");
 const requireRole = require("../middleware/requireRole");
 
-const register = require("../controllers/register");
-const login = require("../controllers/login");
+const register = require("../controllers/auth/register");
+const login = require("../controllers/auth/login");
 
-const addFoodController = require("../controllers/addFoodController");
-const getMyDonations = require("../controllers/getMyDonations");
-
-const getAvailableFoods = require("../controllers/getAvailableFoods");
+const addFoodController = require("../controllers/donor/addFoodController");
+const getMyDonations = require("../controllers/donor/getMyDonations");
 
 const getProfile = require("../controllers/profileController");
 
@@ -37,21 +35,21 @@ router.get(
   "/ngo/available-foods",
   authentication,
   requireRole(["ngo"]),
-  getAvailableFoods,
+  require("../controllers/ngo/getAvailableFoods"),
 );
 
 router.post(
   "/ngo/reserve-food/:foodId",
   authentication,
   requireRole(["ngo"]),
-  require("../controllers/reserveFood"),
+  require("../controllers/ngo/reserveFood"),
 );
 
 router.get(
   "/ngo/my-reservations",
   authentication,
   requireRole(["ngo"]),
-  require("../controllers/myReservations"),
+  require("../controllers/ngo/myReservations"),
 );
 
 //Volunteer
@@ -60,37 +58,37 @@ router.get(
   "/volunteer/pickup-requests",
   authentication,
   requireRole(["volunteer"]),
-  require("../controllers/pickupRequests"),
+  require("../controllers/volunteer/pickupRequests"),
 );
 
 router.patch(
   "/volunteer/accept-food/:id",
   authentication,
   requireRole(["volunteer"]),
-  require("../controllers/acceptFood"), 
+  require("../controllers/volunteer/acceptFood"),
 );
 
 router.get(
   "/volunteer/my-deliveries",
   authentication,
   requireRole(["volunteer"]),
-  require("../controllers/myDeliveries"),
+  require("../controllers/volunteer/myDeliveries"),
 );
 
 router.patch(
   "/volunteer/mark-pickedup/:id",
   authentication,
   requireRole(["volunteer"]),
-  require("../controllers/markPickedUp"), 
+  require("../controllers/volunteer/markPickedUp"),
 );
 
 router.patch(
   "/volunteer/mark-delivered/:id",
   authentication,
   requireRole(["volunteer"]),
-  require("../controllers/markDelivered"), 
+  require("../controllers/volunteer/markDelivered"),
 );
 
 router.get("/me", authentication, getProfile);
 
-module.exports = router
+module.exports = router;
