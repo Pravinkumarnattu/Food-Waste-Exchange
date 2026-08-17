@@ -1,0 +1,297 @@
+
+.my-deliveries-container {
+  padding: 20px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.orders-head {
+  color: #1a2227;
+  font-size: 1.75rem;
+  margin: 0 0 20px;
+}
+
+.order-container {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+
+.orders-table {
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: #ffffff;
+}
+
+
+.orders-table th:nth-child(1),
+.orders-table td:nth-child(1) {
+  width: 19%;
+}
+
+.orders-table th:nth-child(2),
+.orders-table td:nth-child(2) {
+  width: 21%;
+}
+
+.orders-table th:nth-child(3),
+.orders-table td:nth-child(3) {
+  width: 20%;
+}
+
+.orders-table th:nth-child(4),
+.orders-table td:nth-child(4) {
+  width: 14%;
+}
+
+.orders-table th:nth-child(5),
+.orders-table td:nth-child(5) {
+  width: 14%;
+}
+
+.orders-table th:nth-child(6),
+.orders-table td:nth-child(6) {
+  width: 12%;
+}
+
+.orders-table th {
+  background: #f3f4f6;
+  color: #1a2227;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 15px 10px;
+  text-align: center;
+  border: 1px solid #d1d5db;
+  white-space: nowrap;
+}
+
+
+.orders-table td {
+  padding: 15px 10px;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  font-size: 16px;
+  vertical-align: middle;
+  align-content: center;
+}
+
+.orders-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+
+.orders-table td.food-details {
+  display: table-cell;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+.food-details .reserved-food-image {
+  width: 74px;
+  height: 74px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+
+
+.food-details span {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 17px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.donor-details,
+.ngo-details {
+  vertical-align: middle;
+  line-height: 1.6;
+}
+
+
+.donor-details span,
+.ngo-details span {
+  display: block;
+  margin-bottom: 3px;
+  color: #374151;
+}
+
+
+.pickup-time,
+.delivery-time {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.orders-table th:last-child,
+.orders-table td.status-cell {
+  width: 180px;
+  min-width: 180px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.status-cell {
+  padding: 12px !important;
+}
+
+.pickup-btn,
+.delivery-btn {
+  display: block;
+  width: 150px;
+  min-height: 40px;
+  margin: 0 auto;
+
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.pickup-btn {
+  background: #15803d;
+}
+
+.delivery-btn {
+  background: #2563eb;
+}
+
+.pickup-btn:disabled,
+.delivery-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.delivered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100px;
+  min-height: 34px;
+  margin: 0 auto;
+
+  padding: 6px 10px;
+  box-sizing: border-box;
+
+  background: #dcfce7;
+  color: #15803d;
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+.no-foods-accepted,
+.loading-view,
+.failure-view {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  font-size: 16px;
+  text-align: center;
+}
+
+
+
+
+@media (max-width: 768px) {
+
+  .my-deliveries-container {
+    padding: 12px;
+  }
+
+  .orders-head {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  
+  .orders-table {
+    min-width: 1050px;
+    table-layout: fixed;
+  }
+
+  .orders-table th {
+    padding: 12px 8px;
+    font-size: 14px;
+  }
+
+  .orders-table td {
+    padding: 12px 8px;
+    font-size: 14px;
+  }
+
+
+  .orders-table td.food-details {
+    white-space: nowrap;
+  }
+
+  .food-details .reserved-food-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 8px;
+  }
+
+  .food-details span {
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+
+  .donor-details span,
+  .ngo-details span {
+    line-height: 1.5;
+  }
+
+
+
+  .pickup-time,
+  .delivery-time {
+    text-align: center;
+    line-height: 1.5;
+  }
+
+
+  .status-cell {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .pickup-btn,
+  .delivery-btn {
+    min-width: 120px;
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .delivered {
+    min-width: 70px;
+    font-size: 13px;
+  }
+}
