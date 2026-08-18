@@ -7,13 +7,13 @@ import Cookies from "js-cookie";
 import "./VolunteerTopbar.css"
 
 const VolunteerTopbar = () => {
-  const [businessName, setBusinessName] = useState("");
+  const [name, setName] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
       const response = await api.get("/auth/me");
-      setBusinessName(response?.data?.ngo?.organizationName);
+      setName(response?.data?.volunteer?.fullName);
     };
     fetchUser();
   }, []);
@@ -22,7 +22,7 @@ const VolunteerTopbar = () => {
     <div className="volunteer-topbar">
       <button onClick={() => setDropdownOpen(!dropdownOpen)}>
         <MdAccountCircle size={24} color="#15803D" />
-        {businessName}
+        {name}
         {dropdownOpen ? <IoChevronUp size={20} /> : <IoChevronDown size={20} />}
       </button>
       {dropdownOpen && (
