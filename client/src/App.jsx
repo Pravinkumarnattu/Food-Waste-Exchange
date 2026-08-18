@@ -11,11 +11,11 @@ import AddFood from "./Donor/AddFood";
 import MyDonations from "./Donor/MyDonations";
 import DonorProfile from "./Donor/DonorProfile";
 
-import NgoLayout from "./Ngo/NgoLayout";
-import NgoDashboard from "./Ngo/NgoDashboard";
-import AvailableFood from "./Ngo/AvailableFood";
-import MyReservations from "./Ngo/MyReservations";
-import NgoProfile from "./Ngo/NgoProfile";
+import NgoLayout from "./NGO/NgoLayout";
+import NgoDashboard from "./NGO/NgoDashboard";
+import AvailableFood from "./NGO/AvailableFood";
+import MyReservations from "./NGO/MyReservations";
+import NgoProfile from "./NGO/NgoProfile";
 
 import VolunteerLayout from "./Volunteer/VolunteerLayout";
 import VolunteerDashboard from "./Volunteer/VolunteerDashboard";
