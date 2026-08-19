@@ -12,6 +12,9 @@ app.use(
 const connectDB = require("./src/config/db");
 const routes = require("./src/routes/route");
 
+app.get("/", (req, res) => {
+  res.send("Sussess");
+})
 
 app.use("/api/auth", routes);
 
