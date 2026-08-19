@@ -13,7 +13,7 @@ const connectDB = require("./src/config/db");
 const routes = require("./src/routes/route");
 
 app.get("/", (req, res) => {
-  res.send("Sussess");
+  res.send("Server running successfully");
 })
 
 app.use("/api/auth", routes);
