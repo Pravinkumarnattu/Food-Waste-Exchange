@@ -4,11 +4,16 @@ A MERN stack platform that connects food donors (restaurants, bakeries, hotels, 
 
 > Share Food. Reduce Waste. Feed Hope.
 
+🔗 **Live Demo:** [food-waste-exchange-app.vercel.app](https://food-waste-exchange-app.vercel.app)
+📦 **Repository:** [github.com/Pravinkumarnattu/Food-Waste-Exchange](https://github.com/Pravinkumarnattu/Food-Waste-Exchange)
+
 ---
 
 ## 📖 About the Project
 
-Every day, businesses throw away edible food while NGOs and shelters struggle to feed people in need. **Food Waste Exchange** closes that gap by giving donors a simple way to list surplus food, NGOs a way to reserve it, and volunteers a way to handle pickup and delivery — all tracked from donation to delivery.
+Every day, businesses throw away edible food while NGOs and shelters struggle to feed people in need. **Food Waste Exchange** closes that gap by giving donors a simple way to list surplus food, NGOs a way to reserve it, and volunteers a way to handle pickup and delivery — with the full journey tracked from donation to delivery.
+
+The platform supports three active roles — **Donor**, **NGO/Charity**, and **Volunteer** — each with a dedicated dashboard, and a fourth, restricted **Admin** role for platform oversight.
 
 ---
 
@@ -17,25 +22,25 @@ Every day, businesses throw away edible food while NGOs and shelters struggle to
 ### 👤 Multi-Role Authentication
 - Role-based registration (Donor / NGO / Volunteer) with dynamic form fields per role
 - Secure JWT-based authentication with bcrypt password hashing
-- Role-based route protection on both frontend and backend
-- Admin accounts are never publicly self-registrable — provisioned only via a secure seed script
+- Role-based route protection on both frontend and backend (`authenticate` + `requireRole` middleware)
+- Admin accounts are never publicly self-registrable — the register endpoint explicitly rejects `role: "admin"`, and the account is provisioned separately
 
 ### 🏪 Donor
 - Add food donations with type, quantity, expiry time, pickup address, and image
 - View and track all donations posted (Active / Reserved / Completed)
-- Dashboard overview with donation stats
+- Dashboard overview with live donation stats and a recent-activity preview
 
 ### 🤝 NGO / Charity
 - Browse all currently available food donations in real time
-- Reserve donations before they expire
-- Track all reservations and their current status
-- Dashboard overview with reservation stats
+- Reserve donations before they expire, with backend race-condition protection so two NGOs can't claim the same item
+- Track all reservations and their current fulfillment status
+- Dashboard overview with reservation stats and a recent-activity preview
 
 ### 🚴 Volunteer
-- View open pickup requests (reserved donations awaiting a volunteer)
+- View open pickup requests — donations reserved by an NGO but not yet claimed by a volunteer
 - Accept a pickup request
-- Mark food as picked up, then as delivered
-- Track all deliveries in progress and completed
+- Progress a delivery through its full lifecycle: **Accepted → Picked Up → Delivered**, with ownership checks ensuring a volunteer can only update their own deliveries
+- Dashboard overview with delivery stats and a recent-activity preview
 
 ### 🛡️ Admin *(in progress)*
 - Verify NGO registrations
@@ -48,10 +53,10 @@ Every day, businesses throw away edible food while NGOs and shelters struggle to
 
 **Frontend**
 - React.js
-- React Router (nested routes + protected routes)
-- Axios (with request interceptors for auth)
-- js-cookie (session/token storage)
-- Plain CSS (responsive layouts)
+- React Router (nested routes with shared layouts, protected role-based routes)
+- Axios (with a request interceptor for automatic auth header attachment)
+- js-cookie (token and role storage)
+- Plain, responsive CSS
 
 **Backend**
 - Node.js
@@ -71,11 +76,11 @@ Every day, businesses throw away edible food while NGOs and shelters struggle to
 ## 📁 Project Structure
 
 ```
-food-waste-exchange/
-├── client/                      # React frontend
+Food-Waste-Exchange/
+├── client/                          # React frontend
 │   ├── src/
 │   │   ├── api/
-│   │   │   └── axiosInstance.js # Shared axios instance with auth interceptor
+│   │   │   └── axiosInstance.js     # Shared axios instance + auth interceptor
 │   │   ├── Authentication/
 │   │   │   ├── Register.jsx
 │   │   │   └── Login.jsx
@@ -100,12 +105,16 @@ food-waste-exchange/
 │   │   │   └── NgoProfile.jsx
 │   │   ├── Volunteer/
 │   │   │   ├── VolunteerLayout.jsx
+│   │   │   ├── VolunteerSidebar.jsx
+│   │   │   ├── VolunteerTopbar.jsx
+│   │   │   ├── VolunteerDashboard.jsx
 │   │   │   ├── PickupRequests.jsx
-│   │   │   └── MyDeliveries.jsx
+│   │   │   ├── MyDeliveries.jsx
+│   │   │   └── VolunteerProfile.jsx
 │   │   └── App.jsx
-│   └── .env                     # VITE_SERVER_URL
+│   └── .env                         # VITE_SERVER_URL
 │
-└── server/                      # Express backend
+└── server/                          # Express backend
     ├── src/
     │   ├── models/
     │   │   ├── User.js
@@ -125,7 +134,10 @@ food-waste-exchange/
     │   │   │   └── getMyReservations.js
     │   │   └── volunteer/
     │   │       ├── getPickupRequests.js
-    │   │       └── getMyDeliveries.js
+    │   │       ├── acceptFood.js
+    │   │       ├── getMyDeliveries.js
+    │   │       ├── markPickedUp.js
+    │   │       └── markDelivered.js
     │   ├── middleware/
     │   │   ├── authenticate.js
     │   │   └── requireRole.js
@@ -133,7 +145,7 @@ food-waste-exchange/
     │       ├── auth.js
     │       └── dashboard.js
     ├── server.js
-    └── .env                      # PORT, MONGO_URI, JWT_SECRET, CLIENT_URL
+    └── .env                          # PORT, MONGO_URI, JWT_SECRET, CLIENT_URL
 ```
 
 ---
@@ -142,12 +154,12 @@ food-waste-exchange/
 
 ### Prerequisites
 - Node.js (v18+)
-- MongoDB Atlas account (or local MongoDB instance)
+- MongoDB Atlas account (or a local MongoDB instance)
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/food-waste-exchange.git
-cd food-waste-exchange
+git clone https://github.com/Pravinkumarnattu/Food-Waste-Exchange.git
+cd Food-Waste-Exchange
 ```
 
 ### 2. Backend setup
@@ -191,14 +203,36 @@ The app will be available at `http://localhost:5173`.
 
 ## 🔐 Authentication Flow
 
-1. User selects a role (Donor / NGO / Volunteer) on the Choose Role page
-2. Register page renders role-specific fields dynamically
-3. Backend hashes the password, rejects any attempt to self-register as `admin`, and creates the account
+1. The user selects a role (Donor / NGO / Volunteer) on the Choose Role page
+2. The Register page renders role-specific fields dynamically based on that choice
+3. The backend hashes the password, explicitly rejects any attempt to self-register as `admin`, and creates the account
 4. On login, the backend issues a JWT (returned in the response body, not a cookie)
-5. Frontend stores the token and role via `js-cookie`
+5. The frontend stores the token and role using `js-cookie`
 6. An axios request interceptor automatically attaches the token as an `Authorization: Bearer <token>` header on every subsequent request
-7. Protected backend routes use `authenticate` middleware to verify the token, and `requireRole([...])` middleware to enforce role-based access
-8. Protected frontend routes use a `ProtectedRoute` wrapper that checks for a valid token and matching role before rendering
+7. Protected backend routes use `authenticate` middleware to verify the token, and `requireRole([...])` middleware to enforce role-based access per route
+8. Protected frontend routes use a `ProtectedRoute` wrapper that checks for a valid token and matching role before rendering, redirecting unauthenticated or unauthorized users appropriately
+
+---
+
+## 🔄 Order Lifecycle
+
+Every donation follows a consistent, trackable journey across all three roles:
+
+```
+Donor posts food          →  Food.status: "active"
+        │
+NGO reserves it            →  Food.status: "reserved"
+        │                     Order created, Order.status: "reserved"
+        │
+Volunteer accepts pickup   →  Order.status: "accepted"
+        │
+Volunteer marks picked up  →  Order.status: "pickedup", pickupTime set
+        │
+Volunteer marks delivered  →  Order.status: "delivered", deliveryTime set
+                              Food.status: "completed"
+```
+
+Each transition is guarded server-side — a request can only move an order forward from its expected prior state, and only the volunteer or NGO who owns that specific order can act on it.
 
 ---
 
@@ -232,12 +266,12 @@ pickupTime, deliveryTime
 - [x] Multi-role authentication (Register / Login / JWT)
 - [x] Donor: Add Food, My Donations, Dashboard
 - [x] NGO: Available Food, Reserve, My Reservations, Dashboard
-- [ ] Volunteer: Pickup Requests, My Deliveries, Dashboard
+- [x] Volunteer: Pickup Requests, Accept, My Deliveries, Mark Picked Up/Delivered, Dashboard
 - [ ] Cloudinary image uploads
 - [ ] Live map tracking for pickups/deliveries
 - [ ] Admin: NGO verification, analytics dashboard
 - [ ] Real-time notifications (Socket.IO)
-- [ ] Responsive polish and deployment
+- [ ] Responsive polish and final deployment pass
 
 ---
 
